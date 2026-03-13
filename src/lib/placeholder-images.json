@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A sleek electric bike parked on a modern city street at dusk.",
+      "imageUrl": "https://picsum.photos/seed/hero/1920/1080",
+      "imageHint": "electric bike city"
+    },
+    {
+      "id": "bike-01",
+      "description": "Front view of a sporty black and green electric scooter.",
+      "imageUrl": "https://picsum.photos/seed/bike1/600/400",
+      "imageHint": "electric scooter"
+    },
+    {
+      "id": "bike-02",
+      "description": "Side view of a white minimalist electric moped.",
+      "imageUrl": "https://picsum.photos/seed/bike2/600/400",
+      "imageHint": "electric moped"
+    },
+    {
+      "id": "bike-03",
+      "description": "A rugged-looking electric mountain bike on a trail.",
+      "imageUrl": "https://picsum.photos/seed/bike3/600/400",
+      "imageHint": "electric mountain"
+    },
+    {
+      "id": "bike-04",
+      "description": "A stylish retro-style electric bike with a basket.",
+      "imageUrl": "https://picsum.photos/seed/bike4/600/400",
+      "imageHint": "retro bike"
+    },
+    {
+      "id": "bike-05",
+      "description": "A futuristic-looking high-performance electric motorcycle.",
+      "imageUrl": "https://picsum.photos/seed/bike5/600/400",
+      "imageHint": "electric motorcycle"
+    },
+    {
+      "id": "bike-06",
+      "description": "A foldable compact electric bike, perfect for commuters.",
+      "imageUrl": "https://picsum.photos/seed/bike6/600/400",
+      "imageHint": "foldable bike"
+    },
+    {
+      "id": "about-us-image",
+      "description": "Team of mechanics working on electric bikes in a modern workshop.",
+      "imageUrl": "https://picsum.photos/seed/about/800/600",
+      "imageHint": "bike workshop"
+    },
+    {
+      "id": "contact-map",
+      "description": "A map showing the location of the bike rental shop.",
+      "imageUrl": "https://picsum.photos/seed/map/600/450",
+      "imageHint": "city map"
+    }
+  ]
 }

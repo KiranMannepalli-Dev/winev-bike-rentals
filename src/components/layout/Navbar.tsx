@@ -3,12 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, Bike, Phone } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { SITE_CONFIG } from '@/config/site';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -52,11 +51,11 @@ export default function Navbar() {
       <div className="container mx-auto flex h-20 max-w-6xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="flex items-center gap-2">
           <Bike className="h-7 w-7 text-primary" />
-          <span className="font-headline text-lg font-bold text-foreground">
+          <span className="font-headline text-2xl font-bold text-foreground">
             {SITE_CONFIG.name}
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -67,14 +66,16 @@ export default function Navbar() {
             </Link>
           ))}
         </nav>
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
             <a href={`tel:${SITE_CONFIG.phone}`} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
                 <Phone className="h-4 w-4" />
                 {SITE_CONFIG.phoneDisplay}
             </a>
-          <Button>Book a Ride</Button>
+          <Button asChild>
+            <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">Book a Ride</a>
+          </Button>
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -82,10 +83,10 @@ export default function Navbar() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-background/95 w-[80%] border-l-border">
+            <SheetContent side="right" className="bg-background/95 w-[80%] border-l-border p-0">
                 <div className="flex flex-col h-full">
                     <div className="flex justify-between items-center p-4 border-b border-border">
-                        <Link href="/" className="flex items-center gap-2">
+                        <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
                             <Bike className="h-7 w-7 text-primary" />
                             <span className="font-headline text-lg font-bold text-foreground">
                                 {SITE_CONFIG.name}
@@ -109,7 +110,9 @@ export default function Navbar() {
                         ))}
                     </nav>
                     <div className="p-4 border-t border-border">
-                        <Button className="w-full" size="lg">Book a Ride</Button>
+                        <Button asChild className="w-full" size="lg">
+                          <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">Book a Ride</a>
+                        </Button>
                     </div>
                 </div>
             </SheetContent>
