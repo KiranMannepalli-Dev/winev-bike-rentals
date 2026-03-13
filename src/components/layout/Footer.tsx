@@ -26,8 +26,6 @@ const Footer = () => {
       { href: '#', label: 'Daily Rental' },
       { href: '#', label: 'Weekly Rental' },
       { href: '#', label: 'Monthly Rental' },
-      { href: '#', label: 'Fleet for Business' },
-      { href: '#', label: 'EV Bikes' },
     ],
   };
 
@@ -38,34 +36,34 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="container mx-auto max-w-6xl px-4 md:px-8 py-16">
+    <footer className="bg-card border-t border-border">
+      <div className="container mx-auto max-w-6xl px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <Bike className="h-8 w-8 text-primary" />
-              <span className="font-headline font-bold text-xl text-foreground">
+              <Bike className="h-7 w-7 text-primary" />
+              <span className="font-logo text-2xl font-bold text-foreground italic">
                 {SITE_CONFIG.name}
               </span>
             </Link>
-            <p className="text-muted-foreground text-sm max-w-xs">
+            <p className="text-muted-foreground text-xs max-w-xs">
               {SITE_CONFIG.description.split('.')[0]}.
             </p>
             <div className="flex space-x-4">
               {social.map((item) => (
                 <Link key={item.name} href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
-                  <item.icon className="h-5 w-5" />
+                  <item.icon className="h-4 w-4" />
                 </Link>
               ))}
             </div>
           </div>
 
           <div>
-            <h3 className="font-headline font-semibold text-foreground tracking-wider">Quick Links</h3>
+            <h3 className="font-headline font-semibold text-foreground tracking-wider text-sm">Quick Links</h3>
             <ul className="mt-4 space-y-2">
               {links.quick.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-xs">
                     {link.label}
                   </Link>
                 </li>
@@ -74,11 +72,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-headline font-semibold text-foreground tracking-wider">Services</h3>
+            <h3 className="font-headline font-semibold text-foreground tracking-wider text-sm">Services</h3>
             <ul className="mt-4 space-y-2">
               {links.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-xs">
                     {link.label}
                   </Link>
                 </li>
@@ -87,8 +85,8 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-headline font-semibold text-foreground tracking-wider">Contact Us</h3>
-            <ul className="mt-4 space-y-3 text-sm">
+            <h3 className="font-headline font-semibold text-foreground tracking-wider text-sm">Contact Us</h3>
+            <ul className="mt-4 space-y-3 text-xs">
               <li className="flex items-start">
                 <span className="mt-1 mr-3 shrink-0">📍</span>
                 <span className="text-muted-foreground">{SITE_CONFIG.address.full}</span>
@@ -113,7 +111,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
+        <div className="mt-12 border-t border-border pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground">
           <p>&copy; {currentYear ? `${currentYear} ` : ''}{SITE_CONFIG.legalName}. All Rights Reserved.</p>
           <p className="mt-4 sm:mt-0">Made with ❤️ in Hyderabad</p>
         </div>

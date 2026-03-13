@@ -33,25 +33,25 @@ const faqItems = [
 
 export default function FaqPage() {
     return (
-        <div className="pt-20">
-            <header className="py-16 md:py-24 text-center bg-card border-b">
+        <div className="pt-16">
+            <header className="py-12 md:py-16 text-center bg-card border-b">
                 <div className="container">
-                    <h1 className="text-4xl md:text-5xl font-headline font-bold">Frequently Asked Questions</h1>
-                    <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+                    <h1 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h1>
+                    <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
                         Find answers to common questions about our bike rental service.
                     </p>
                 </div>
             </header>
 
-            <main className="py-16 md:py-24">
+            <main className="py-12 md:py-16">
                 <div className="container max-w-3xl mx-auto">
                     <Accordion type="single" collapsible className="w-full">
                         {faqItems.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index}`}>
-                                <AccordionTrigger className="text-left text-lg hover:no-underline">
+                                <AccordionTrigger className="text-left text-base hover:no-underline">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-base text-muted-foreground">
+                                <AccordionContent className="text-sm text-muted-foreground">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>

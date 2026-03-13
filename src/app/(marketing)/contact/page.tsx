@@ -32,35 +32,49 @@ export default function ContactPage() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    // TODO: Awaiting API implementation
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. We'll get back to you soon.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) throw new Error("Server error");
+
+      toast({
+        title: "Message Sent!",
+        description: "Thanks for reaching out. We'll get back to you soon.",
+      });
+      form.reset();
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Could not send your message. Please try again.",
+      });
+    }
   }
 
   return (
-    <div className="pt-20">
-      <header className="py-16 md:py-24 text-center bg-card border-b">
+    <div className="pt-16">
+      <header className="py-12 md:py-16 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold">Contact Us</h1>
-          <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-headline font-bold">Contact Us</h1>
+          <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
             Have questions or need support? We're here to help.
           </p>
         </div>
       </header>
       
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-headline text-foreground">Get in Touch</h2>
-              <p className="mt-2 text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
+              <h2 className="text-2xl font-headline text-foreground">Get in Touch</h2>
+              <p className="mt-2 text-sm text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8 space-y-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4">
                   <FormField
                     control={form.control}
                     name="name"
@@ -94,31 +108,31 @@ export default function ContactPage() {
                       <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="How can we help you?" {...field} rows={6} />
+                          <Textarea placeholder="How can we help you?" {...field} rows={5} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" size="lg">Send Message</Button>
+                  <Button type="submit">Send Message</Button>
                 </form>
               </Form>
             </div>
             
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-headline text-foreground">Our Location</h3>
-                <div className="mt-4 space-y-4 text-muted-foreground">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                <h3 className="text-xl font-headline text-foreground">Our Location</h3>
+                <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                     <span>{SITE_CONFIG.address.full}</span>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <Phone className="h-5 w-5 text-primary flex-shrink-0" />
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                     <a href={`tel:${SITE_CONFIG.phone}`} className="hover:text-primary">{SITE_CONFIG.phoneDisplay}</a>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <Mail className="h-5 w-5 text-primary flex-shrink-0" />
+                  <div className="flex items-center gap-3">
+                    <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                     <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-primary">{SITE_CONFIG.email}</a>
                   </div>
                 </div>
@@ -131,7 +145,7 @@ export default function ContactPage() {
                       alt={mapImage.description}
                       width={600}
                       height={450}
-                      className="rounded-lg shadow-lg aspect-[4/3] object-cover"
+                      className="rounded-lg shadow-md aspect-[4/3] object-cover"
                       data-ai-hint={mapImage.imageHint}
                     />
                   </a>

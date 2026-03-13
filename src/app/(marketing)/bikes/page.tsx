@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -9,10 +10,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Gauge, Zap } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { EnquiryForm } from '@/components/EnquiryForm';
 
 const categories: ['All', ...BikeCategory[]] = ['All', 'Scooter', 'Motorcycle', 'Moped', 'Mountain Bike'];
 
-function BikeCard({ bike }: { bike: Bike }) {
+function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: string) => void; }) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="p-0">
@@ -27,31 +30,31 @@ function BikeCard({ bike }: { bike: Bike }) {
       </CardHeader>
       <CardContent className="flex-grow p-4">
         <div className="flex justify-between items-start">
-          <CardTitle className="text-lg font-headline">{bike.name}</CardTitle>
+          <CardTitle className="text-base font-headline">{bike.name}</CardTitle>
           <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-xs">
             {bike.isAvailable ? 'Available' : 'Booked'}
           </Badge>
         </div>
         <Badge variant="category" className="mt-1">{bike.category}</Badge>
         
-        <div className="mt-4 flex justify-between text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-                <Zap className="h-4 w-4 text-primary" />
+        <div className="mt-3 flex justify-between text-xs text-muted-foreground">
+            <div className="flex items-center gap-1.5">
+                <Zap className="h-3 w-3 text-primary" />
                 <span>{bike.range} km Range</span>
             </div>
-            <div className="flex items-center gap-2">
-                <Gauge className="h-4 w-4 text-primary" />
+            <div className="flex items-center gap-1.5">
+                <Gauge className="h-3 w-3 text-primary" />
                 <span>{bike.speed} km/h Top Speed</span>
             </div>
         </div>
 
       </CardContent>
       <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <div className="text-lg font-bold">
+        <div className="font-bold text-base">
           ₹{bike.pricePerHour}
-          <span className="text-sm font-normal text-muted-foreground">/hr</span>
+          <span className="text-xs font-normal text-muted-foreground">/hr</span>
         </div>
-        <Button disabled={!bike.isAvailable}>Enquire Now</Button>
+        <Button size="sm" disabled={!bike.isAvailable} onClick={() => onEnquire(bike.name)}>Enquire Now</Button>
       </CardFooter>
     </Card>
   );
@@ -59,23 +62,34 @@ function BikeCard({ bike }: { bike: Bike }) {
 
 export default function BikesPage() {
   const [filter, setFilter] = useState<BikeCategory | 'All'>('All');
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [selectedBike, setSelectedBike] = useState('');
+
+  const handleEnquire = (bikeName: string) => {
+    setSelectedBike(bikeName);
+    setIsEnquiryOpen(true);
+  };
+
+  const handleFormSubmit = () => {
+    setIsEnquiryOpen(false);
+  };
 
   const filteredBikes = filter === 'All'
     ? bikesData
     : bikesData.filter((bike) => bike.category === filter);
 
   return (
-    <div className="pt-20">
-      <header className="py-16 md:py-24 text-center bg-card border-b">
+    <div className="pt-16">
+      <header className="py-12 md:py-16 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Fleet</h1>
-          <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-headline font-bold">Our Fleet</h1>
+          <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
             Choose from our wide range of premium electric bikes. Perfect for every journey.
           </p>
         </div>
       </header>
 
-      <main className="py-16 md:py-24">
+      <main className="py-12 md:py-16">
         <div className="container">
           <div className="flex justify-center mb-8">
             <Tabs value={filter} onValueChange={(value) => setFilter(value as any)}>
@@ -87,9 +101,9 @@ export default function BikesPage() {
             </Tabs>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredBikes.map((bike) => (
-              <BikeCard key={bike.id} bike={bike} />
+              <BikeCard key={bike.id} bike={bike} onEnquire={handleEnquire} />
             ))}
           </div>
 
@@ -100,6 +114,12 @@ export default function BikesPage() {
           )}
         </div>
       </main>
+
+      <Dialog open={isEnquiryOpen} onOpenChange={setIsEnquiryOpen}>
+        <DialogContent>
+            <EnquiryForm bikeName={selectedBike} onFormSubmit={handleFormSubmit} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

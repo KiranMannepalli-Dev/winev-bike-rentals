@@ -12,14 +12,14 @@ export default {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px',
+        '2xl': '1280px',
       },
     },
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
         headline: ['Syne', 'sans-serif'],
-        code: ['"JetBrains Mono"', 'monospace'],
+        logo: ['"Playfair Display"', 'serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -74,9 +74,9 @@ export default {
         },
       },
       borderRadius: {
-        lg: 'var(--radius)', // 8px
-        md: 'calc(var(--radius) - 4px)', // 4px
-        sm: 'calc(var(--radius) - 6px)', // 2px
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
         'accordion-down': {

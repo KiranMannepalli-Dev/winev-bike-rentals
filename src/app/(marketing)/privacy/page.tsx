@@ -11,20 +11,20 @@ export default function PrivacyPolicyPage() {
   }, []);
 
   return (
-    <div className="pt-20">
-      <header className="py-16 md:py-24 text-center bg-card border-b">
+    <div className="pt-16">
+      <header className="py-12 md:py-16 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold">Privacy Policy</h1>
+          <h1 className="text-3xl md:text-4xl font-headline font-bold">Privacy Policy</h1>
           {lastUpdated ? (
-            <p className="mt-4 text-lg md:text-xl text-muted-foreground">Last Updated: {lastUpdated}</p>
+            <p className="mt-3 text-sm md:text-base text-muted-foreground">Last Updated: {lastUpdated}</p>
           ) : (
-            <div className="h-7 mt-4" />
+            <div className="h-6 mt-3" />
           )}
         </div>
       </header>
       
-      <main className="py-16 md:py-24">
-        <div className="container max-w-3xl mx-auto prose prose-invert text-muted-foreground">
+      <main className="py-12 md:py-16">
+        <div className="container max-w-3xl mx-auto prose prose-invert text-muted-foreground prose-sm">
             <p>Welcome to {SITE_CONFIG.name}. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our bike rental services.</p>
 
             <h2>1. Information We Collect</h2>

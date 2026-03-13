@@ -93,7 +93,7 @@ export default function Home() {
     const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
 
     return (
-        <div className="pt-20">
+        <div className="pt-16">
             <HeroSection image={heroImage} />
             <StatsSection />
             <WhyChooseUs />
@@ -108,7 +108,7 @@ export default function Home() {
 
 function HeroSection({ image }: { image: typeof PlaceHolderImages[0] | undefined }) {
     return (
-        <section className="relative h-[80vh] min-h-[500px] text-white">
+        <section className="relative h-[75vh] min-h-[450px] text-white">
             {image && (
                 <Image
                     src={image.imageUrl}
@@ -121,19 +121,19 @@ function HeroSection({ image }: { image: typeof PlaceHolderImages[0] | undefined
             )}
             <div className="absolute inset-0 bg-black/60" />
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center container">
-                <h1 className="text-4xl md:text-6xl font-headline font-extrabold tracking-tight">
+                <h1 className="text-3xl md:text-5xl font-headline font-extrabold tracking-tight">
                     {SITE_CONFIG.tagline}
                 </h1>
-                <p className="mt-4 max-w-2xl text-lg md:text-xl text-primary-foreground/80">
+                <p className="mt-4 max-w-xl text-sm md:text-base text-primary-foreground/80">
                     Rent premium electric bikes in Hyderabad from ₹35/hr. Zero deposit, instant booking.
                 </p>
-                <div className="mt-8 flex gap-4">
-                    <Button asChild size="lg">
+                <div className="mt-6 flex gap-4">
+                    <Button asChild size="default">
                         <Link href="/bikes">Explore Our Fleet</Link>
                     </Button>
-                    <Button asChild size="lg" variant="whatsapp">
+                    <Button asChild size="default" variant="whatsapp">
                         <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                            <MessageCircle className="mr-2" /> Book on WhatsApp
+                            <MessageCircle /> Book on WhatsApp
                         </a>
                     </Button>
                 </div>
@@ -145,23 +145,23 @@ function HeroSection({ image }: { image: typeof PlaceHolderImages[0] | undefined
 function StatsSection() {
     return (
         <section className="bg-card border-y">
-            <div className="container py-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div className="p-4">
-                        <p className="text-4xl font-bold text-primary">{SITE_CONFIG.stats.rides}</p>
-                        <p className="text-sm text-muted-foreground mt-1">Happy Rides</p>
+            <div className="container py-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div className="p-3">
+                        <p className="text-3xl font-bold text-primary">{SITE_CONFIG.stats.rides}</p>
+                        <p className="text-xs text-muted-foreground mt-1">Happy Rides</p>
                     </div>
-                    <div className="p-4">
-                        <p className="text-4xl font-bold text-primary">{SITE_CONFIG.stats.rating}</p>
-                        <p className="text-sm text-muted-foreground mt-1">Customer Rating</p>
+                    <div className="p-3">
+                        <p className="text-3xl font-bold text-primary">{SITE_CONFIG.stats.rating}</p>
+                        <p className="text-xs text-muted-foreground mt-1">Customer Rating</p>
                     </div>
-                     <div className="p-4">
-                        <p className="text-4xl font-bold text-primary">0</p>
-                        <p className="text-sm text-muted-foreground mt-1">Security Deposit</p>
+                     <div className="p-3">
+                        <p className="text-3xl font-bold text-primary">0</p>
+                        <p className="text-xs text-muted-foreground mt-1">Security Deposit</p>
                     </div>
-                    <div className="p-4">
-                        <p className="text-4xl font-bold text-primary">&lt;{SITE_CONFIG.stats.response}</p>
-                        <p className="text-sm text-muted-foreground mt-1">Response Time</p>
+                    <div className="p-3">
+                        <p className="text-3xl font-bold text-primary">&lt;{SITE_CONFIG.stats.response}</p>
+                        <p className="text-xs text-muted-foreground mt-1">Response Time</p>
                     </div>
                 </div>
             </div>
@@ -171,21 +171,21 @@ function StatsSection() {
 
 function WhyChooseUs() {
     return (
-        <section className="py-16 md:py-24">
+        <section className="py-12 md:py-16">
             <div className="container">
-                <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold">Why Ride With Winev?</h2>
-                    <p className="mt-4 text-lg text-muted-foreground">
+                <div className="text-center max-w-2xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-headline font-bold">Why Ride With Winev?</h2>
+                    <p className="mt-3 text-sm text-muted-foreground">
                         We provide a seamless, affordable, and eco-friendly riding experience.
                     </p>
                 </div>
-                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {whyChooseUsItems.map((item) => (
                         <Card key={item.title} className="text-center">
                             <CardContent className="p-6">
-                                <item.icon className="h-12 w-12 mx-auto text-primary" />
-                                <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                                <item.icon className="h-10 w-10 mx-auto text-primary" />
+                                <h3 className="mt-4 text-base font-semibold">{item.title}</h3>
+                                <p className="mt-2 text-xs text-muted-foreground">{item.description}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -197,15 +197,15 @@ function WhyChooseUs() {
 
 function FeaturedFleet() {
     return (
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-12 md:py-16 bg-card">
             <div className="container">
-                <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold">Our Featured Fleet</h2>
-                    <p className="mt-4 text-lg text-muted-foreground">
+                <div className="text-center max-w-2xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-headline font-bold">Our Featured Fleet</h2>
+                    <p className="mt-3 text-sm text-muted-foreground">
                         Top-of-the-line electric bikes for every need and preference.
                     </p>
                 </div>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {featuredBikes.map((bike) => (
                          <Card key={bike.id} className="flex flex-col">
                          <CardHeader className="p-0">
@@ -220,7 +220,7 @@ function FeaturedFleet() {
                          </CardHeader>
                          <CardContent className="flex-grow p-4">
                            <div className="flex justify-between items-start">
-                             <CardTitle className="text-lg font-headline">{bike.name}</CardTitle>
+                             <CardTitle className="text-base font-headline">{bike.name}</CardTitle>
                              <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-xs">
                                {bike.isAvailable ? 'Available' : 'Booked'}
                              </Badge>
@@ -228,9 +228,9 @@ function FeaturedFleet() {
                            <Badge variant="category" className="mt-1">{bike.category}</Badge>
                          </CardContent>
                          <CardContent className="p-4 pt-0 flex justify-between items-center">
-                           <div className="text-lg font-bold">
+                           <div className="font-bold text-base">
                              ₹{bike.pricePerHour}
-                             <span className="text-sm font-normal text-muted-foreground">/hr</span>
+                             <span className="text-xs font-normal text-muted-foreground">/hr</span>
                            </div>
                            <Button asChild size="sm">
                             <Link href="/bikes">View Details</Link>
@@ -239,8 +239,8 @@ function FeaturedFleet() {
                        </Card>
                     ))}
                 </div>
-                <div className="mt-12 text-center">
-                    <Button asChild size="lg" variant="outline">
+                <div className="mt-10 text-center">
+                    <Button asChild size="default" variant="outline">
                         <Link href="/bikes">
                             See All Bikes <ArrowRight className="ml-2" />
                         </Link>
@@ -253,22 +253,22 @@ function FeaturedFleet() {
 
 function HowItWorks() {
     return (
-        <section className="py-16 md:py-24">
+        <section className="py-12 md:py-16">
              <div className="container">
-                <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold">Get Rolling in 3 Simple Steps</h2>
-                    <p className="mt-4 text-lg text-muted-foreground">
+                <div className="text-center max-w-2xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-headline font-bold">Get Rolling in 3 Simple Steps</h2>
+                    <p className="mt-3 text-sm text-muted-foreground">
                         Renting an electric bike has never been easier.
                     </p>
                 </div>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {howItWorksSteps.map((step) => (
                         <div key={step.step} className="text-center p-4">
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 border-2 border-primary text-primary mx-auto">
-                                <span className="text-2xl font-bold">{step.step}</span>
+                            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 border-2 border-primary text-primary mx-auto">
+                                <span className="text-xl font-bold">{step.step}</span>
                             </div>
-                            <h3 className="mt-6 text-xl font-semibold">{step.title}</h3>
-                            <p className="mt-2 text-muted-foreground">{step.description}</p>
+                            <h3 className="mt-5 text-base font-semibold">{step.title}</h3>
+                            <p className="mt-2 text-xs text-muted-foreground">{step.description}</p>
                         </div>
                     ))}
                 </div>
@@ -279,31 +279,31 @@ function HowItWorks() {
 
 function Testimonials() {
     return (
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-12 md:py-16 bg-card">
             <div className="container">
-                <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Riders Say</h2>
-                     <p className="mt-4 text-lg text-muted-foreground">
+                <div className="text-center max-w-2xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-headline font-bold">What Our Riders Say</h2>
+                     <p className="mt-3 text-sm text-muted-foreground">
                         We're proud to have happy riders who love our service.
                     </p>
                 </div>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {testimonials.map((testimonial) => (
                         <Card key={testimonial.name}>
                             <CardContent className="p-6">
-                                <div className="flex items-center gap-4">
-                                    <Avatar>
-                                        <AvatarImage src={`https://picsum.photos/seed/${testimonial.avatar}/40/40`} />
+                                <div className="flex items-center gap-3">
+                                    <Avatar className="h-9 w-9">
+                                        <AvatarImage src={`https://picsum.photos/seed/${testimonial.avatar}/36/36`} />
                                         <AvatarFallback>{testimonial.avatar}</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <p className="font-semibold">{testimonial.name}</p>
-                                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                                        <p className="font-semibold text-sm">{testimonial.name}</p>
+                                        <p className="text-xs text-muted-foreground">{testimonial.role}</p>
                                     </div>
                                 </div>
-                                <p className="mt-4 text-sm text-muted-foreground italic">"{testimonial.text}"</p>
-                                <div className="mt-4 flex gap-1 text-primary">
-                                    {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                                <p className="mt-4 text-xs text-muted-foreground italic">"{testimonial.text}"</p>
+                                <div className="mt-3 flex gap-1 text-primary">
+                                    {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}
                                 </div>
                             </CardContent>
                         </Card>
@@ -316,14 +316,14 @@ function Testimonials() {
 
 function FaqSection() {
     return (
-        <section className="py-16 md:py-24">
-            <div className="container grid md:grid-cols-2 gap-16 items-center">
-                <div className="max-w-xl">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold">Common Questions</h2>
-                    <p className="mt-4 text-lg text-muted-foreground">
+        <section className="py-12 md:py-16">
+            <div className="container grid md:grid-cols-2 gap-12 items-center">
+                <div className="max-w-md">
+                    <h2 className="text-2xl md:text-3xl font-headline font-bold">Common Questions</h2>
+                    <p className="mt-3 text-sm text-muted-foreground">
                         Have a question? We've got answers. If you can't find what you're looking for, feel free to contact us.
                     </p>
-                     <Button asChild size="lg" variant="outline" className="mt-6">
+                     <Button asChild size="default" variant="outline" className="mt-6">
                         <Link href="/faq">
                             See All FAQs
                         </Link>
@@ -333,10 +333,10 @@ function FaqSection() {
                      <Accordion type="single" collapsible className="w-full">
                         {faqItems.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index}`}>
-                                <AccordionTrigger className="text-left text-lg hover:no-underline">
+                                <AccordionTrigger className="text-left text-base hover:no-underline">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-base text-muted-foreground">
+                                <AccordionContent className="text-sm text-muted-foreground">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>
@@ -350,20 +350,20 @@ function FaqSection() {
 
 function CtaSection() {
   return (
-    <section className="py-16 md:py-24 border-t bg-primary/5">
+    <section className="py-12 md:py-16 border-t bg-primary/5">
        <div className="container text-center">
-          <BikeIcon className="h-16 w-16 mx-auto text-primary" />
-          <h2 className="mt-6 text-3xl md:text-4xl font-headline font-bold">Ready to Start Your Journey?</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+          <BikeIcon className="h-12 w-12 mx-auto text-primary" />
+          <h2 className="mt-4 text-2xl md:text-3xl font-headline font-bold">Ready to Start Your Journey?</h2>
+          <p className="mt-3 max-w-xl mx-auto text-sm text-muted-foreground">
             Join thousands of happy riders in Hyderabad. Book your electric bike today and experience the future of urban travel.
           </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button asChild size="lg">
+          <div className="mt-6 flex justify-center gap-4">
+            <Button asChild size="default">
               <Link href="/bikes">
                 Browse Bikes
               </Link>
             </Button>
-            <Button asChild size="lg" variant="whatsapp">
+            <Button asChild size="default" variant="whatsapp">
               <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">
                 Book on WhatsApp
               </a>
