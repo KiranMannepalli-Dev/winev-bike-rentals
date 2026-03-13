@@ -1,0 +1,121 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Menu, X, Bike, Phone } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+import { SITE_CONFIG } from '@/config/site';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/bikes', label: 'Bikes' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/faq', label: 'FAQ' },
+];
+
+export default function Navbar() {
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (window.scrollY > 80 && window.scrollY > lastScrollY) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
+
+  return (
+    <motion.header
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: '-100%' },
+      }}
+      animate={hidden ? 'hidden' : 'visible'}
+      transition={{ duration: 0.35, ease: 'easeInOut' }}
+      className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-border"
+    >
+      <div className="container mx-auto flex h-20 max-w-6xl items-center justify-between px-4 md:px-8">
+        <Link href="/" className="flex items-center gap-2">
+          <Bike className="h-7 w-7 text-primary" />
+          <span className="font-headline text-lg font-bold text-foreground">
+            {SITE_CONFIG.name}
+          </span>
+        </Link>
+        <nav className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="hidden md:flex items-center gap-4">
+            <a href={`tel:${SITE_CONFIG.phone}`} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+                <Phone className="h-4 w-4" />
+                {SITE_CONFIG.phoneDisplay}
+            </a>
+          <Button>Book a Ride</Button>
+        </div>
+        <div className="md:hidden">
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-background/95 w-[80%] border-l-border">
+                <div className="flex flex-col h-full">
+                    <div className="flex justify-between items-center p-4 border-b border-border">
+                        <Link href="/" className="flex items-center gap-2">
+                            <Bike className="h-7 w-7 text-primary" />
+                            <span className="font-headline text-lg font-bold text-foreground">
+                                {SITE_CONFIG.name}
+                            </span>
+                        </Link>
+                        <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
+                            <X className="h-6 w-6" />
+                            <span className="sr-only">Close menu</span>
+                        </Button>
+                    </div>
+                    <nav className="flex-1 flex flex-col justify-center items-center gap-y-8">
+                        {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="text-2xl font-headline font-medium text-foreground transition-colors hover:text-primary"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            {link.label}
+                        </Link>
+                        ))}
+                    </nav>
+                    <div className="p-4 border-t border-border">
+                        <Button className="w-full" size="lg">Book a Ride</Button>
+                    </div>
+                </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </motion.header>
+  );
+}
