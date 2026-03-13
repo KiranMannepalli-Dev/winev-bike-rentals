@@ -58,30 +58,30 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="pt-14">
-      <header className="py-8 md:py-10 text-center bg-card border-b">
+    <div className="pt-12">
+      <header className="py-6 md:py-8 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-xl md:text-2xl font-bold">Contact Us</h1>
+          <h1 className="text-lg md:text-2xl font-bold">Contact Us</h1>
           <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
             Have questions or need support? We're here to help.
           </p>
         </div>
       </header>
       
-      <section className="py-8 md:py-12">
+      <section className="py-8 md:py-10">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-lg font-bold text-foreground">Get in Touch</h2>
+              <h2 className="text-base font-bold text-foreground">Get in Touch</h2>
               <p className="mt-2 text-xs text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
                   <FormField
                     control={form.control}
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Full Name</FormLabel>
+                        <FormLabel className="text-xs">Full Name</FormLabel>
                         <FormControl>
                           <Input placeholder="John Doe" {...field} />
                         </FormControl>
@@ -94,7 +94,7 @@ export default function ContactPage() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email Address</FormLabel>
+                        <FormLabel className="text-xs">Email Address</FormLabel>
                         <FormControl>
                           <Input placeholder="john.doe@example.com" {...field} />
                         </FormControl>
@@ -107,7 +107,7 @@ export default function ContactPage() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
+                        <FormLabel className="text-xs">Message</FormLabel>
                         <FormControl>
                           <Textarea placeholder="How can we help you?" {...field} rows={4} />
                         </FormControl>
@@ -122,7 +122,7 @@ export default function ContactPage() {
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-bold text-foreground">Our Location</h3>
+                <h3 className="text-base font-bold text-foreground">Our Location</h3>
                 <div className="mt-4 space-y-3 text-xs text-muted-foreground">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
@@ -146,7 +146,7 @@ export default function ContactPage() {
                       alt={mapImage.description}
                       width={600}
                       height={450}
-                      className="rounded-md aspect-[4/3] object-cover"
+                      className="rounded-md aspect-video sm:aspect-[4/3] object-cover"
                       data-ai-hint={mapImage.imageHint}
                     />
                   </a>

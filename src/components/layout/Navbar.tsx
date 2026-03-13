@@ -40,7 +40,7 @@ export default function Navbar() {
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
-        if (window.scrollY > 80 && window.scrollY > lastScrollY) {
+        if (window.scrollY > 50 && window.scrollY > lastScrollY) {
           setHidden(true);
         } else {
           setHidden(false);
@@ -65,10 +65,10 @@ export default function Navbar() {
       transition={{ duration: 0.35, ease: 'easeInOut' }}
       className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-sm border-b border-border"
     >
-      <div className="container mx-auto flex h-14 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
           <Bike className="h-5 w-5 text-primary" />
-          <TypingAnimation text="WINEV" className="text-lg font-bold text-foreground uppercase" />
+          <TypingAnimation text="WINEV" className="text-base font-bold text-foreground uppercase" />
         </Link>
         <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
@@ -111,6 +111,7 @@ export default function Navbar() {
                         "w-full cursor-pointer",
                         pathname === link.href && "text-primary"
                       )}
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.label}
                     </Link>

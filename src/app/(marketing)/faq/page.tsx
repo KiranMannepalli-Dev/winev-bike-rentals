@@ -33,17 +33,17 @@ const faqItems = [
 
 export default function FaqPage() {
     return (
-        <div className="pt-14">
-            <header className="py-8 md:py-10 text-center bg-card border-b">
+        <div className="pt-12">
+            <header className="py-6 md:py-8 text-center bg-card border-b">
                 <div className="container">
-                    <h1 className="text-xl md:text-2xl font-bold">Frequently Asked Questions</h1>
+                    <h1 className="text-lg md:text-2xl font-bold">Frequently Asked Questions</h1>
                     <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
                         Find answers to common questions about our bike rental service.
                     </p>
                 </div>
             </header>
 
-            <main className="py-8 md:py-12">
+            <main className="py-8 md:py-10">
                 <div className="container max-w-2xl mx-auto">
                     <Accordion type="single" collapsible className="w-full">
                         {faqItems.map((item, index) => (
