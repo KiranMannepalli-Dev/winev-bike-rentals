@@ -23,9 +23,9 @@ const Footer = () => {
   };
 
   const social = [
-    { href: '#', icon: Instagram },
-    { href: '#', icon: Youtube },
-    { href: '#', icon: Facebook },
+    { name: 'instagram', href: '#', icon: Instagram },
+    { name: 'youtube', href: '#', icon: Youtube },
+    { name: 'facebook', href: '#', icon: Facebook },
   ];
 
   return (
@@ -44,7 +44,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {social.map((item) => (
-                <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                <Link key={item.name} href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
                   <item.icon className="h-5 w-5" />
                 </Link>
               ))}
