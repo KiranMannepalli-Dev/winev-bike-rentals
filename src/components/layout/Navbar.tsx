@@ -60,10 +60,10 @@ export default function Navbar() {
       transition={{ duration: 0.35, ease: 'easeInOut' }}
       className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-sm border-b border-border"
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-14 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <Bike className="h-6 w-6 text-primary" />
-          <TypingAnimation text="WINEV" className="font-headline text-xl font-bold text-foreground uppercase tracking-wider" />
+          <Bike className="h-5 w-5 text-primary" />
+          <TypingAnimation text="WINEV" className="text-lg font-bold text-foreground uppercase" />
         </Link>
         <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
@@ -71,7 +71,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "text-xs font-medium text-muted-foreground transition-colors hover:text-foreground",
+                "text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground",
                 pathname === link.href && "text-foreground"
               )}
             >
@@ -80,7 +80,7 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="hidden lg:flex items-center gap-4">
-            <a href={`tel:${SITE_CONFIG.phone}`} className="flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-foreground">
+            <a href={`tel:${SITE_CONFIG.phone}`} className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground hover:text-foreground">
                 <Phone className="h-3 w-3" />
                 {SITE_CONFIG.phoneDisplay}
             </a>
@@ -93,7 +93,7 @@ export default function Navbar() {
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-4 w-4" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
@@ -103,13 +103,13 @@ export default function Navbar() {
                   <div className="flex flex-col h-full">
                       <div className="flex justify-between items-center p-4 border-b border-border">
                           <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                              <Bike className="h-6 w-6 text-primary" />
-                              <span className="font-headline text-lg font-bold text-foreground uppercase tracking-wider">
+                              <Bike className="h-5 w-5 text-primary" />
+                              <span className="text-base font-bold text-foreground uppercase">
                                   WINEV
                               </span>
                           </Link>
                           <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setMobileMenuOpen(false)}>
-                              <X className="h-5 w-5" />
+                              <X className="h-4 w-4" />
                               <span className="sr-only">Close menu</span>
                           </Button>
                       </div>
@@ -118,7 +118,7 @@ export default function Navbar() {
                           <Link
                               key={link.href}
                               href={link.href}
-                              className="text-lg font-headline font-medium text-foreground transition-colors hover:text-primary"
+                              className="text-base font-medium text-foreground transition-colors hover:text-primary"
                               onClick={() => setMobileMenuOpen(false)}
                           >
                               {link.label}

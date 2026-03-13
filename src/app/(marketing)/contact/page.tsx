@@ -1,3 +1,4 @@
+
 "use client";
 
 import { z } from "zod";
@@ -57,22 +58,22 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="pt-16">
-      <header className="py-10 md:py-12 text-center bg-card border-b">
+    <div className="pt-14">
+      <header className="py-8 md:py-10 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-2xl md:text-3xl font-headline font-bold">Contact Us</h1>
-          <p className="mt-2 text-sm text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-xl md:text-2xl font-bold">Contact Us</h1>
+          <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
             Have questions or need support? We're here to help.
           </p>
         </div>
       </header>
       
-      <section className="py-10 md:py-12">
+      <section className="py-8 md:py-12">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-10">
             <div>
-              <h2 className="text-xl font-headline text-foreground">Get in Touch</h2>
-              <p className="mt-2 text-sm text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
+              <h2 className="text-lg font-bold text-foreground">Get in Touch</h2>
+              <p className="mt-2 text-xs text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4">
                   <FormField
@@ -121,8 +122,8 @@ export default function ContactPage() {
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-headline text-foreground">Our Location</h3>
-                <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+                <h3 className="text-lg font-bold text-foreground">Our Location</h3>
+                <div className="mt-4 space-y-3 text-xs text-muted-foreground">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                     <span>{SITE_CONFIG.address.full}</span>

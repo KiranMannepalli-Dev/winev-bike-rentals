@@ -30,7 +30,7 @@ function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: strin
       </CardHeader>
       <CardContent className="flex-grow p-3">
         <div className="flex justify-between items-start">
-          <CardTitle className="text-sm font-headline">{bike.name}</CardTitle>
+          <CardTitle className="text-sm font-semibold">{bike.name}</CardTitle>
           <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-[10px]">
             {bike.isAvailable ? 'Available' : 'Booked'}
           </Badge>
@@ -79,17 +79,17 @@ export default function BikesPage() {
     : bikesData.filter((bike) => bike.category === filter);
 
   return (
-    <div className="pt-16">
-      <header className="py-10 md:py-12 text-center bg-card border-b">
+    <div className="pt-14">
+      <header className="py-8 md:py-10 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-2xl md:text-3xl font-headline font-bold">Our Fleet</h1>
-          <p className="mt-2 text-sm text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-xl md:text-2xl font-bold">Our Fleet</h1>
+          <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
             Choose from our wide range of premium electric bikes. Perfect for every journey.
           </p>
         </div>
       </header>
 
-      <main className="py-10 md:py-12">
+      <main className="py-8 md:py-12">
         <div className="container">
           <div className="flex justify-center mb-8">
             <Tabs value={filter} onValueChange={(value) => setFilter(value as any)}>
