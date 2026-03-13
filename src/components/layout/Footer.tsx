@@ -1,8 +1,17 @@
+"use client";
+
 import Link from 'next/link';
 import { Instagram, Youtube, Facebook, Bike } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
+import { useEffect, useState } from 'react';
 
 const Footer = () => {
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   const links = {
     quick: [
       { href: '/', label: 'Home' },
@@ -105,7 +114,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-16 border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} {SITE_CONFIG.legalName}. All Rights Reserved.</p>
+          <p>&copy; {currentYear ? `${currentYear} ` : ''}{SITE_CONFIG.legalName}. All Rights Reserved.</p>
           <p className="mt-4 sm:mt-0">Made with ❤️ in Hyderabad</p>
         </div>
       </div>

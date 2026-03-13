@@ -21,6 +21,11 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -76,47 +81,49 @@ export default function Navbar() {
           </Button>
         </div>
         <div className="lg:hidden">
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-background/95 w-[80%] border-l-border p-0">
-                <div className="flex flex-col h-full">
-                    <div className="flex justify-between items-center p-4 border-b border-border">
-                        <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                            <Bike className="h-7 w-7 text-primary" />
-                            <span className="font-headline text-lg font-bold text-foreground">
-                                {SITE_CONFIG.name}
-                            </span>
-                        </Link>
-                        <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
-                            <X className="h-6 w-6" />
-                            <span className="sr-only">Close menu</span>
-                        </Button>
-                    </div>
-                    <nav className="flex-1 flex flex-col justify-center items-center gap-y-8">
-                        {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className="text-2xl font-headline font-medium text-foreground transition-colors hover:text-primary"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            {link.label}
-                        </Link>
-                        ))}
-                    </nav>
-                    <div className="p-4 border-t border-border">
-                        <Button asChild className="w-full" size="lg">
-                          <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">Book a Ride</a>
-                        </Button>
-                    </div>
-                </div>
-            </SheetContent>
-          </Sheet>
+          {isMounted && (
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-background/95 w-[80%] border-l-border p-0">
+                  <div className="flex flex-col h-full">
+                      <div className="flex justify-between items-center p-4 border-b border-border">
+                          <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+                              <Bike className="h-7 w-7 text-primary" />
+                              <span className="font-headline text-lg font-bold text-foreground">
+                                  {SITE_CONFIG.name}
+                              </span>
+                          </Link>
+                          <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
+                              <X className="h-6 w-6" />
+                              <span className="sr-only">Close menu</span>
+                          </Button>
+                      </div>
+                      <nav className="flex-1 flex flex-col justify-center items-center gap-y-8">
+                          {navLinks.map((link) => (
+                          <Link
+                              key={link.href}
+                              href={link.href}
+                              className="text-2xl font-headline font-medium text-foreground transition-colors hover:text-primary"
+                              onClick={() => setMobileMenuOpen(false)}
+                          >
+                              {link.label}
+                          </Link>
+                          ))}
+                      </nav>
+                      <div className="p-4 border-t border-border">
+                          <Button asChild className="w-full" size="lg">
+                            <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">Book a Ride</a>
+                          </Button>
+                      </div>
+                  </div>
+              </SheetContent>
+            </Sheet>
+          )}
         </div>
       </div>
     </motion.header>
