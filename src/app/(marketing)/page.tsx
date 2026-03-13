@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { bikesData } from '@/lib/bikes-data';
@@ -127,11 +127,11 @@ function HeroSection({ image }: { image: typeof PlaceHolderImages[0] | undefined
                 <p className="mt-3 max-w-lg text-xs sm:text-sm text-foreground/80">
                     Rent premium electric bikes in Hyderabad from ₹35/hr. Zero deposit, instant booking.
                 </p>
-                <div className="mt-5 flex flex-col sm:flex-row gap-3">
-                    <Button asChild size="sm">
+                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-sm">
+                    <Button asChild size="sm" className="w-full">
                         <Link href="/bikes">Explore Our Fleet</Link>
                     </Button>
-                    <Button asChild size="sm" variant="whatsapp">
+                    <Button asChild size="sm" variant="whatsapp" className="w-full">
                         <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">
                             <MessageCircle /> Book on WhatsApp
                         </a>
