@@ -28,14 +28,14 @@ function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: strin
           data-ai-hint={bike.image.imageHint}
         />
       </CardHeader>
-      <CardContent className="flex-grow p-2.5">
+      <CardContent className="flex-grow p-2">
         <div className="flex justify-between items-start">
-          <CardTitle className="text-xs font-semibold">{bike.name}</CardTitle>
-          <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-[9px]">
+          <CardTitle className="text-[11px] font-semibold">{bike.name}</CardTitle>
+          <Badge variant={bike.isAvailable ? 'available' : 'unavailable'}>
             {bike.isAvailable ? 'Available' : 'Booked'}
           </Badge>
         </div>
-        <Badge variant="category" className="mt-1 text-[9px]">{bike.category}</Badge>
+        <Badge variant="category" className="mt-1">{bike.category}</Badge>
         
         <div className="mt-2 flex justify-between text-[11px] text-muted-foreground">
             <div className="flex items-center gap-1.5">
@@ -49,8 +49,8 @@ function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: strin
         </div>
 
       </CardContent>
-      <CardFooter className="p-2.5 pt-0 flex justify-between items-center">
-        <div className="font-bold text-xs">
+      <CardFooter className="p-2 pt-0 flex justify-between items-center">
+        <div className="font-semibold text-xs">
           ₹{bike.pricePerHour}
           <span className="text-[11px] font-normal text-muted-foreground">/hr</span>
         </div>
@@ -82,7 +82,7 @@ export default function BikesPage() {
     <div className="pt-12">
       <header className="py-6 md:py-8 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-lg md:text-2xl font-bold">Our Fleet</h1>
+          <h1 className="text-lg md:text-2xl font-semibold">Our Fleet</h1>
           <p className="mt-2 text-[11px] text-muted-foreground max-w-2xl mx-auto">
             Choose from our wide range of premium electric bikes. Perfect for every journey.
           </p>
@@ -93,15 +93,15 @@ export default function BikesPage() {
         <div className="container">
           <div className="flex justify-center mb-6">
             <Tabs value={filter} onValueChange={(value) => setFilter(value as any)}>
-              <TabsList className="grid grid-cols-3 sm:grid-cols-5 h-auto">
+              <TabsList className="grid grid-cols-3 sm:grid-cols-5 h-9">
                 {categories.map((category) => (
-                  <TabsTrigger key={category} value={category} className="text-xs">{category}</TabsTrigger>
+                  <TabsTrigger key={category} value={category} className="text-[11px]">{category}</TabsTrigger>
                 ))}
               </TabsList>
             </Tabs>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
             {filteredBikes.map((bike) => (
               <BikeCard key={bike.id} bike={bike} onEnquire={handleEnquire} />
             ))}

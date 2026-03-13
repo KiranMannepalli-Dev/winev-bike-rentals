@@ -17,7 +17,7 @@ export default function AboutPage() {
     <div className="pt-12">
       <header className="py-6 md:py-8 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-lg md:text-2xl font-bold">About Winev Bike Rental</h1>
+          <h1 className="text-lg md:text-2xl font-semibold">About Winev Bike Rental</h1>
           <p className="mt-2 text-[11px] text-muted-foreground max-w-2xl mx-auto">
             We are revolutionizing urban mobility in Hyderabad with our fleet of premium, eco-friendly electric bikes.
           </p>
@@ -28,7 +28,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-6 items-center">
             <div className="prose prose-invert max-w-none text-muted-foreground">
-              <h2 className="text-base font-bold text-foreground">Our Story</h2>
+              <h2 className="text-base font-semibold text-foreground">Our Story</h2>
               <p className="text-xs">
                 Founded in 2023, Winev Bike Rental started with a simple mission: to provide an affordable, convenient, and sustainable transportation solution for the people of Hyderabad. We saw the growing traffic congestion and pollution, and knew there had to be a better way to get around the city.
               </p>
@@ -55,7 +55,7 @@ export default function AboutPage() {
       <section className="py-8 md:py-10 bg-card">
         <div className="container">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-base font-bold text-foreground">Our Mission & Values</h2>
+            <h2 className="text-base font-semibold text-foreground">Our Mission & Values</h2>
             <p className="mt-2 text-xs text-muted-foreground">
               We are driven by a core set of values that guide everything we do.
             </p>
@@ -82,7 +82,7 @@ export default function AboutPage() {
 
       <section className="py-8 md:py-10">
         <div className="container">
-          <h2 className="text-base font-bold text-center text-foreground">Meet the Team</h2>
+          <h2 className="text-base font-semibold text-center text-foreground">Meet the Team</h2>
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {teamMembers.map((member) => (
               <Card key={member.name} className="text-center">

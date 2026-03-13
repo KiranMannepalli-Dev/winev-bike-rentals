@@ -36,7 +36,7 @@ export default function FaqPage() {
         <div className="pt-12">
             <header className="py-6 md:py-8 text-center bg-card border-b">
                 <div className="container">
-                    <h1 className="text-lg md:text-2xl font-bold">Frequently Asked Questions</h1>
+                    <h1 className="text-lg md:text-2xl font-semibold">Frequently Asked Questions</h1>
                     <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
                         Find answers to common questions about our bike rental service.
                     </p>
@@ -48,10 +48,10 @@ export default function FaqPage() {
                     <Accordion type="single" collapsible className="w-full">
                         {faqItems.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index}`}>
-                                <AccordionTrigger className="text-left text-xs hover:no-underline">
+                                <AccordionTrigger className="text-left text-[11px] hover:no-underline">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-[11px] text-muted-foreground">
+                                <AccordionContent className="text-[10px] text-muted-foreground">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>

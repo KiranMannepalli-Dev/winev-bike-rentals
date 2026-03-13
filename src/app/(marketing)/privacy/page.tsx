@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
     <div className="pt-16">
       <header className="py-10 md:py-12 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-2xl md:text-3xl font-headline font-bold">Privacy Policy</h1>
+          <h1 className="text-2xl md:text-3xl font-headline font-semibold">Privacy Policy</h1>
           {lastUpdated ? (
             <p className="mt-2 text-sm text-muted-foreground">Last Updated: {lastUpdated}</p>
           ) : (

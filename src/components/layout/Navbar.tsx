@@ -68,7 +68,7 @@ export default function Navbar() {
       <div className="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
           <Bike className="h-5 w-5 text-primary" />
-          <TypingAnimation text="WINEV" className="text-base font-bold text-foreground uppercase" />
+          <TypingAnimation text="WINEV" className="text-base font-semibold text-foreground uppercase" />
         </Link>
         <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
@@ -98,7 +98,7 @@ export default function Navbar() {
             <DropdownMenu open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <Menu className="h-4 w-4" />
+                  <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </DropdownMenuTrigger>

@@ -44,7 +44,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
               <Bike className="h-5 w-5 text-primary" />
-              <TypingAnimation text="WINEV" className="text-base font-bold text-foreground uppercase" />
+              <TypingAnimation text="WINEV" className="text-base font-semibold text-foreground uppercase" />
             </Link>
             <p className="text-muted-foreground text-xs max-w-xs">
               {SITE_CONFIG.description.split('.')[0]}.
@@ -59,7 +59,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-foreground tracking-wider text-sm">Quick Links</h3>
+            <h3 className="font-semibold text-foreground tracking-wider text-sm">Quick Links</h3>
             <ul className="mt-4 space-y-2">
               {links.quick.map((link) => (
                 <li key={link.href}>
@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-foreground tracking-wider text-sm">Services</h3>
+            <h3 className="font-semibold text-foreground tracking-wider text-sm">Services</h3>
             <ul className="mt-4 space-y-2">
               {links.services.map((link) => (
                 <li key={link.label}>
@@ -85,7 +85,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-foreground tracking-wider text-sm">Contact Us</h3>
+            <h3 className="font-semibold text-foreground tracking-wider text-sm">Contact Us</h3>
             <ul className="mt-4 space-y-3 text-xs">
               <li className="flex items-start">
                 <MapPin className="h-4 w-4 text-primary mr-3 shrink-0 mt-0.5" />

@@ -121,7 +121,7 @@ function HeroSection({ image }: { image: typeof PlaceHolderImages[0] | undefined
             )}
             <div className="absolute inset-0 bg-black/60" />
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center container">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-headline font-bold tracking-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-headline font-semibold tracking-tight">
                     {SITE_CONFIG.tagline}
                 </h1>
                 <p className="mt-3 max-w-lg text-xs sm:text-sm text-foreground/80">
@@ -148,19 +148,19 @@ function StatsSection() {
             <div className="container py-2">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-center">
                     <div className="p-2">
-                        <p className="text-lg font-bold text-primary">{SITE_CONFIG.stats.rides}</p>
+                        <p className="text-lg font-semibold text-primary">{SITE_CONFIG.stats.rides}</p>
                         <p className="text-[10px] text-muted-foreground mt-0.5">Happy Rides</p>
                     </div>
                     <div className="p-2">
-                        <p className="text-lg font-bold text-primary">{SITE_CONFIG.stats.rating}</p>
+                        <p className="text-lg font-semibold text-primary">{SITE_CONFIG.stats.rating}</p>
                         <p className="text-[10px] text-muted-foreground mt-0.5">Customer Rating</p>
                     </div>
                      <div className="p-2">
-                        <p className="text-lg font-bold text-primary">0</p>
+                        <p className="text-lg font-semibold text-primary">0</p>
                         <p className="text-[10px] text-muted-foreground mt-0.5">Security Deposit</p>
                     </div>
                     <div className="p-2">
-                        <p className="text-lg font-bold text-primary">&lt;{SITE_CONFIG.stats.response}</p>
+                        <p className="text-lg font-semibold text-primary">&lt;{SITE_CONFIG.stats.response}</p>
                         <p className="text-[10px] text-muted-foreground mt-0.5">Response Time</p>
                     </div>
                 </div>
@@ -174,7 +174,7 @@ function WhyChooseUs() {
         <section className="py-8 md:py-10">
             <div className="container">
                 <div className="text-center max-w-xl mx-auto">
-                    <h2 className="text-lg md:text-xl font-headline font-bold">Why Ride With Winev?</h2>
+                    <h2 className="text-lg md:text-xl font-headline font-semibold">Why Ride With Winev?</h2>
                     <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
                         We provide a seamless, affordable, and eco-friendly riding experience.
                     </p>
@@ -200,12 +200,12 @@ function FeaturedFleet() {
         <section className="py-8 md:py-10 bg-card">
             <div className="container">
                 <div className="text-center max-w-xl mx-auto">
-                    <h2 className="text-lg md:text-xl font-headline font-bold">Our Featured Fleet</h2>
+                    <h2 className="text-lg md:text-xl font-headline font-semibold">Our Featured Fleet</h2>
                     <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
                         Top-of-the-line electric bikes for every need and preference.
                     </p>
                 </div>
-                <div className="mt-6 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="mt-6 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
                     {featuredBikes.map((bike) => (
                          <Card key={bike.id} className="flex flex-col">
                          <CardHeader className="p-0">
@@ -218,17 +218,17 @@ function FeaturedFleet() {
                              data-ai-hint={bike.image.imageHint}
                            />
                          </CardHeader>
-                         <CardContent className="flex-grow p-2.5">
+                         <CardContent className="flex-grow p-2">
                            <div className="flex justify-between items-start">
-                             <CardTitle className="text-xs font-semibold">{bike.name}</CardTitle>
-                             <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-[9px]">
+                             <CardTitle className="text-[11px] font-semibold">{bike.name}</CardTitle>
+                             <Badge variant={bike.isAvailable ? 'available' : 'unavailable'}>
                                {bike.isAvailable ? 'Available' : 'Booked'}
                              </Badge>
                            </div>
-                           <Badge variant="category" className="mt-1 text-[9px]">{bike.category}</Badge>
+                           <Badge variant="category" className="mt-1">{bike.category}</Badge>
                          </CardContent>
-                         <CardFooter className="p-2.5 pt-0 flex justify-between items-center">
-                           <div className="font-bold text-xs">
+                         <CardFooter className="p-2 pt-0 flex justify-between items-center">
+                           <div className="font-semibold text-xs">
                              ₹{bike.pricePerHour}
                              <span className="text-[11px] font-normal text-muted-foreground">/hr</span>
                            </div>
@@ -256,7 +256,7 @@ function HowItWorks() {
         <section className="py-8 md:py-10">
              <div className="container">
                 <div className="text-center max-w-xl mx-auto">
-                    <h2 className="text-lg md:text-xl font-headline font-bold">Get Rolling in 3 Simple Steps</h2>
+                    <h2 className="text-lg md:text-xl font-headline font-semibold">Get Rolling in 3 Simple Steps</h2>
                     <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
                         Renting an electric bike has never been easier.
                     </p>
@@ -265,7 +265,7 @@ function HowItWorks() {
                     {howItWorksSteps.map((step) => (
                         <div key={step.step} className="text-center p-2">
                             <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary/10 border-2 border-primary text-primary mx-auto">
-                                <span className="text-base font-bold">{step.step}</span>
+                                <span className="text-base font-semibold">{step.step}</span>
                             </div>
                             <h3 className="mt-3 text-xs md:text-sm font-semibold">{step.title}</h3>
                             <p className="mt-1.5 text-[11px] text-muted-foreground">{step.description}</p>
@@ -282,7 +282,7 @@ function Testimonials() {
         <section className="py-8 md:py-10 bg-card">
             <div className="container">
                 <div className="text-center max-w-xl mx-auto">
-                    <h2 className="text-lg md:text-xl font-headline font-bold">What Our Riders Say</h2>
+                    <h2 className="text-lg md:text-xl font-headline font-semibold">What Our Riders Say</h2>
                      <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
                         We're proud to have happy riders who love our service.
                     </p>
@@ -319,7 +319,7 @@ function FaqSection() {
         <section className="py-8 md:py-10">
             <div className="container grid md:grid-cols-2 gap-6 md:gap-10 items-center">
                 <div className="max-w-md">
-                    <h2 className="text-lg md:text-xl font-headline font-bold">Common Questions</h2>
+                    <h2 className="text-lg md:text-xl font-headline font-semibold">Common Questions</h2>
                     <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
                         Have a question? We've got answers. If you can't find what you're looking for, feel free to contact us.
                     </p>
@@ -353,7 +353,7 @@ function CtaSection() {
     <section className="py-8 md:py-10 border-t bg-primary/5">
        <div className="container text-center">
           <BikeIcon className="h-8 w-8 mx-auto text-primary" />
-          <h2 className="mt-3 text-lg md:text-xl font-headline font-bold">Ready to Start Your Journey?</h2>
+          <h2 className="mt-3 text-lg md:text-xl font-headline font-semibold">Ready to Start Your Journey?</h2>
           <p className="mt-2 max-w-lg mx-auto text-[11px] md:text-sm text-muted-foreground">
             Join thousands of happy riders in Hyderabad. Book your electric bike today and experience the future of urban travel.
           </p>

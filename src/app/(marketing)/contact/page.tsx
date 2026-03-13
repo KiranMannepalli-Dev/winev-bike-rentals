@@ -61,7 +61,7 @@ export default function ContactPage() {
     <div className="pt-12">
       <header className="py-6 md:py-8 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-lg md:text-2xl font-bold">Contact Us</h1>
+          <h1 className="text-lg md:text-2xl font-semibold">Contact Us</h1>
           <p className="mt-2 text-xs text-muted-foreground max-w-2xl mx-auto">
             Have questions or need support? We're here to help.
           </p>
@@ -72,7 +72,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-base font-bold text-foreground">Get in Touch</h2>
+              <h2 className="text-base font-semibold text-foreground">Get in Touch</h2>
               <p className="mt-2 text-xs text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
@@ -122,7 +122,7 @@ export default function ContactPage() {
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-base font-bold text-foreground">Our Location</h3>
+                <h3 className="text-base font-semibold text-foreground">Our Location</h3>
                 <div className="mt-4 space-y-3 text-xs text-muted-foreground">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
