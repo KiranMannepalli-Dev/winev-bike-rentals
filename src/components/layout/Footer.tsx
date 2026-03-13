@@ -2,7 +2,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Instagram, Youtube, Facebook, Bike } from 'lucide-react';
+import { Instagram, Youtube, Facebook, Bike, MapPin, Phone, Mail, Clock, Heart } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
 import { useEffect, useState } from 'react';
 import { TypingAnimation } from '../TypingAnimation';
@@ -88,23 +88,23 @@ const Footer = () => {
             <h3 className="font-bold text-foreground tracking-wider text-sm">Contact Us</h3>
             <ul className="mt-4 space-y-3 text-xs">
               <li className="flex items-start">
-                <span className="mt-1 mr-3 shrink-0">📍</span>
+                <MapPin className="h-4 w-4 text-primary mr-3 shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">{SITE_CONFIG.address.full}</span>
               </li>
               <li className="flex items-center">
-                <span className="mr-3 shrink-0">📞</span>
+                <Phone className="h-4 w-4 text-primary mr-3 shrink-0" />
                 <a href={`tel:${SITE_CONFIG.phone}`} className="text-muted-foreground hover:text-primary transition-colors">
                   {SITE_CONFIG.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center">
-                <span className="mr-3 shrink-0">✉️</span>
+                <Mail className="h-4 w-4 text-primary mr-3 shrink-0" />
                 <a href={`mailto:${SITE_CONFIG.email}`} className="text-muted-foreground hover:text-primary transition-colors">
                   {SITE_CONFIG.email}
                 </a>
               </li>
               <li className="flex items-center">
-                <span className="mr-3 shrink-0">🕐</span>
+                <Clock className="h-4 w-4 text-primary mr-3 shrink-0" />
                 <span className="text-muted-foreground">{SITE_CONFIG.hours}</span>
               </li>
             </ul>
@@ -113,7 +113,9 @@ const Footer = () => {
 
         <div className="mt-8 border-t border-border pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-muted-foreground">
           <p>&copy; {currentYear ? `${currentYear} ` : ''}{SITE_CONFIG.legalName}. All Rights Reserved.</p>
-          <p className="mt-4 sm:mt-0">Made with ❤️ in Hyderabad</p>
+          <p className="mt-4 sm:mt-0 flex items-center gap-1.5">
+            Made with <Heart className="h-3.5 w-3.5 text-destructive fill-destructive" /> in Hyderabad
+          </p>
         </div>
       </div>
     </footer>
