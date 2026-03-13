@@ -13,7 +13,7 @@ import { bikesData } from '@/lib/bikes-data';
 import { Badge } from '@/components/ui/badge';
 import { SITE_CONFIG } from '@/config/site';
 import { Zap, ShieldCheck, Wrench, Sprout, Star, MessageCircle, Bike as BikeIcon, ArrowRight } from 'lucide-react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { BikeDetails } from '@/components/BikeDetails';
 import { type Bike } from '@/types/bikes';
 
@@ -120,7 +120,12 @@ export default function Home() {
             <CtaSection />
             <Dialog open={!!selectedBike} onOpenChange={(isOpen) => !isOpen && handleCloseDetails()}>
               <DialogContent className="max-w-3xl p-4">
-                {selectedBike && <BikeDetails bike={selectedBike} />}
+                {selectedBike && (
+                  <>
+                    <DialogTitle className="sr-only">{selectedBike.name}</DialogTitle>
+                    <BikeDetails bike={selectedBike} />
+                  </>
+                )}
               </DialogContent>
             </Dialog>
         </div>
@@ -394,3 +399,5 @@ function CtaSection() {
     </section>
   )
 }
+
+    

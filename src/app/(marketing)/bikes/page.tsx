@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Gauge, Zap } from 'lucide-react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { BikeDetails } from '@/components/BikeDetails';
 
 const categories: ['All', ...BikeCategory[]] = ['All', 'Scooter', 'Motorcycle', 'Moped', 'Mountain Bike'];
@@ -115,9 +115,16 @@ export default function BikesPage() {
 
       <Dialog open={!!selectedBike} onOpenChange={(isOpen) => !isOpen && handleCloseDetails()}>
         <DialogContent className="max-w-3xl p-4">
-          {selectedBike && <BikeDetails bike={selectedBike} />}
+          {selectedBike && (
+            <>
+              <DialogTitle className="sr-only">{selectedBike.name}</DialogTitle>
+              <BikeDetails bike={selectedBike} />
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>
   );
 }
+
+    
