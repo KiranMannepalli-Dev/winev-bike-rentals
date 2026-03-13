@@ -9,8 +9,9 @@ import { usePathname } from 'next/navigation';
 
 import { SITE_CONFIG } from '@/config/site';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { TypingAnimation } from '../TypingAnimation';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -33,12 +34,14 @@ export default function Navbar() {
 
   useEffect(() => {
     const controlNavbar = () => {
-      if (window.scrollY > 80 && window.scrollY > lastScrollY) {
-        setHidden(true);
-      } else {
-        setHidden(false);
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > 80 && window.scrollY > lastScrollY) {
+          setHidden(true);
+        } else {
+          setHidden(false);
+        }
+        setLastScrollY(window.scrollY);
       }
-      setLastScrollY(window.scrollY);
     };
 
     window.addEventListener('scroll', controlNavbar);
@@ -55,14 +58,12 @@ export default function Navbar() {
       }}
       animate={hidden ? 'hidden' : 'visible'}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-sm border-b border-border"
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
           <Bike className="h-6 w-6 text-primary" />
-          <span className="font-logo text-2xl font-bold text-foreground italic">
-            {SITE_CONFIG.name}
-          </span>
+          <TypingAnimation text="WINEV" className="font-headline text-xl font-bold text-foreground uppercase tracking-wider" />
         </Link>
         <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
@@ -96,14 +97,15 @@ export default function Navbar() {
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-background/95 w-[80%] border-l-border p-0">
+              <SheetContent side="right" className="bg-background/95 w-[80%] max-w-xs border-l-border p-0">
                   <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                  <SheetDescription className="sr-only">Mobile navigation menu</SheetDescription>
                   <div className="flex flex-col h-full">
                       <div className="flex justify-between items-center p-4 border-b border-border">
                           <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
                               <Bike className="h-6 w-6 text-primary" />
-                              <span className="font-logo text-xl font-bold text-foreground italic">
-                                  {SITE_CONFIG.name}
+                              <span className="font-headline text-lg font-bold text-foreground uppercase tracking-wider">
+                                  WINEV
                               </span>
                           </Link>
                           <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setMobileMenuOpen(false)}>
@@ -116,7 +118,7 @@ export default function Navbar() {
                           <Link
                               key={link.href}
                               href={link.href}
-                              className="text-xl font-headline font-medium text-foreground transition-colors hover:text-primary"
+                              className="text-lg font-headline font-medium text-foreground transition-colors hover:text-primary"
                               onClick={() => setMobileMenuOpen(false)}
                           >
                               {link.label}

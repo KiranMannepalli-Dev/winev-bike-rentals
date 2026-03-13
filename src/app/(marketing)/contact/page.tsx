@@ -58,20 +58,20 @@ export default function ContactPage() {
 
   return (
     <div className="pt-16">
-      <header className="py-12 md:py-16 text-center bg-card border-b">
+      <header className="py-10 md:py-12 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-3xl md:text-4xl font-headline font-bold">Contact Us</h1>
-          <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-2xl md:text-3xl font-headline font-bold">Contact Us</h1>
+          <p className="mt-2 text-sm text-muted-foreground max-w-2xl mx-auto">
             Have questions or need support? We're here to help.
           </p>
         </div>
       </header>
       
-      <section className="py-12 md:py-16">
+      <section className="py-10 md:py-12">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-10">
             <div>
-              <h2 className="text-2xl font-headline text-foreground">Get in Touch</h2>
+              <h2 className="text-xl font-headline text-foreground">Get in Touch</h2>
               <p className="mt-2 text-sm text-muted-foreground">Fill out the form and we'll get back to you as soon as possible.</p>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4">
@@ -108,20 +108,20 @@ export default function ContactPage() {
                       <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="How can we help you?" {...field} rows={5} />
+                          <Textarea placeholder="How can we help you?" {...field} rows={4} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit">Send Message</Button>
+                  <Button type="submit" size="sm">Send Message</Button>
                 </form>
               </Form>
             </div>
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-headline text-foreground">Our Location</h3>
+                <h3 className="text-lg font-headline text-foreground">Our Location</h3>
                 <div className="mt-4 space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
@@ -145,7 +145,7 @@ export default function ContactPage() {
                       alt={mapImage.description}
                       width={600}
                       height={450}
-                      className="rounded-lg shadow-md aspect-[4/3] object-cover"
+                      className="rounded-md aspect-[4/3] object-cover"
                       data-ai-hint={mapImage.imageHint}
                     />
                   </a>

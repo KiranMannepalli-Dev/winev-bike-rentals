@@ -24,20 +24,20 @@ function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: strin
           alt={bike.name}
           width={600}
           height={400}
-          className="rounded-t-lg object-cover aspect-[3/2]"
+          className="rounded-t-md object-cover aspect-[3/2]"
           data-ai-hint={bike.image.imageHint}
         />
       </CardHeader>
-      <CardContent className="flex-grow p-4">
+      <CardContent className="flex-grow p-3">
         <div className="flex justify-between items-start">
-          <CardTitle className="text-base font-headline">{bike.name}</CardTitle>
-          <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-xs">
+          <CardTitle className="text-sm font-headline">{bike.name}</CardTitle>
+          <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-[10px]">
             {bike.isAvailable ? 'Available' : 'Booked'}
           </Badge>
         </div>
-        <Badge variant="category" className="mt-1">{bike.category}</Badge>
+        <Badge variant="category" className="mt-1 text-[10px]">{bike.category}</Badge>
         
-        <div className="mt-3 flex justify-between text-xs text-muted-foreground">
+        <div className="mt-2 flex justify-between text-xs text-muted-foreground">
             <div className="flex items-center gap-1.5">
                 <Zap className="h-3 w-3 text-primary" />
                 <span>{bike.range} km Range</span>
@@ -49,8 +49,8 @@ function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: strin
         </div>
 
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <div className="font-bold text-base">
+      <CardFooter className="p-3 pt-0 flex justify-between items-center">
+        <div className="font-bold text-sm">
           ₹{bike.pricePerHour}
           <span className="text-xs font-normal text-muted-foreground">/hr</span>
         </div>
@@ -80,28 +80,28 @@ export default function BikesPage() {
 
   return (
     <div className="pt-16">
-      <header className="py-12 md:py-16 text-center bg-card border-b">
+      <header className="py-10 md:py-12 text-center bg-card border-b">
         <div className="container">
-          <h1 className="text-3xl md:text-4xl font-headline font-bold">Our Fleet</h1>
-          <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-2xl md:text-3xl font-headline font-bold">Our Fleet</h1>
+          <p className="mt-2 text-sm text-muted-foreground max-w-2xl mx-auto">
             Choose from our wide range of premium electric bikes. Perfect for every journey.
           </p>
         </div>
       </header>
 
-      <main className="py-12 md:py-16">
+      <main className="py-10 md:py-12">
         <div className="container">
           <div className="flex justify-center mb-8">
             <Tabs value={filter} onValueChange={(value) => setFilter(value as any)}>
               <TabsList>
                 {categories.map((category) => (
-                  <TabsTrigger key={category} value={category}>{category}</TabsTrigger>
+                  <TabsTrigger key={category} value={category} className="text-xs">{category}</TabsTrigger>
                 ))}
               </TabsList>
             </Tabs>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {filteredBikes.map((bike) => (
               <BikeCard key={bike.id} bike={bike} onEnquire={handleEnquire} />
             ))}

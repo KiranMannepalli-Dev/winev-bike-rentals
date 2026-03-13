@@ -10,7 +10,7 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '1.5rem',
       screens: {
         '2xl': '1280px',
       },
@@ -19,7 +19,6 @@ export default {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
         headline: ['Syne', 'sans-serif'],
-        logo: ['"Playfair Display"', 'serif'],
       },
       colors: {
         background: 'hsl(var(--background))',

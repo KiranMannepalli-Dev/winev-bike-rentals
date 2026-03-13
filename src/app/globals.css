@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%; /* #0D0D0D */
+    --background: 0 0% 4%; /* #0A0A0A */
     --foreground: 0 0% 95%; /* #F2F2F2 */
  
-    --card: 0 0% 8%; /* #141414 */
+    --card: 0 0% 7%; /* #121212 */
     --card-foreground: 0 0% 95%; /* #F2F2F2 */
  
-    --popover: 0 0% 8%; /* #141414 */
+    --popover: 0 0% 7%; /* #121212 */
     --popover-foreground: 0 0% 95%; /* #F2F2F2 */
  
-    --primary: 145 55% 55%; /* #57C57E */
+    --primary: 145 63% 47%; /* #22C55E */
     --primary-foreground: 0 0% 5%; /* #0D0D0D */
  
     --secondary: 0 0% 12%; /* #1F1F1F */
@@ -25,13 +25,13 @@
     --accent: 0 0% 15%; /* #262626 */
     --accent-foreground: 0 0% 98%;
  
-    --destructive: 0 70% 55%; /* #E64949 */
+    --destructive: 0 63% 51%; /* #E5484D */
     --destructive-foreground: 0 0% 98%;
  
-    --border: 0 0% 18%; /* #2E2E2E */
-    --input: 0 0% 18%; /* #2E2E2E */
+    --border: 0 0% 16%; /* #292929 */
+    --input: 0 0% 16%; /* #292929 */
  
-    --ring: 145 55% 55%; /* #57C57E */
+    --ring: 145 63% 47%;
  
     --radius: 0.5rem; /* 8px */
 
@@ -43,16 +43,16 @@
   }
 
   .dark {
-    --background: 0 0% 5%; /* #0D0D0D */
+    --background: 0 0% 4%; /* #0A0A0A */
     --foreground: 0 0% 95%; /* #F2F2F2 */
  
-    --card: 0 0% 8%; /* #141414 */
+    --card: 0 0% 7%; /* #121212 */
     --card-foreground: 0 0% 95%; /* #F2F2F2 */
  
-    --popover: 0 0% 8%; /* #141414 */
+    --popover: 0 0% 7%; /* #121212 */
     --popover-foreground: 0 0% 95%; /* #F2F2F2 */
  
-    --primary: 145 55% 55%; /* #57C57E */
+    --primary: 145 63% 47%; /* #22C55E */
     --primary-foreground: 0 0% 5%; /* #0D0D0D */
  
     --secondary: 0 0% 12%; /* #1F1F1F */
@@ -64,13 +64,13 @@
     --accent: 0 0% 15%; /* #262626 */
     --accent-foreground: 0 0% 98%;
  
-    --destructive: 0 70% 55%; /* #E64949 */
+    --destructive: 0 63% 51%; /* #E5484D */
     --destructive-foreground: 0 0% 98%;
  
-    --border: 0 0% 18%; /* #2E2E2E */
-    --input: 0 0% 18%; /* #2E2E2E */
+    --border: 0 0% 16%; /* #292929 */
+    --input: 0 0% 16%; /* #292929 */
  
-    --ring: 145 55% 55%; /* #57C57E */
+    --ring: 145 63% 47%;
   }
 }
  
