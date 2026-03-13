@@ -11,21 +11,21 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Gauge, Zap } from 'lucide-react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { EnquiryForm } from '@/components/EnquiryForm';
+import { BikeDetails } from '@/components/BikeDetails';
 
 const categories: ['All', ...BikeCategory[]] = ['All', 'Scooter', 'Motorcycle', 'Moped', 'Mountain Bike'];
 
-function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: string) => void; }) {
+function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: Bike) => void; }) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="p-0">
         <Image
-          src={bike.image.imageUrl}
+          src={bike.images[0].imageUrl}
           alt={bike.name}
           width={600}
           height={400}
           className="rounded-t-md object-cover aspect-[3/2]"
-          data-ai-hint={bike.image.imageHint}
+          data-ai-hint={bike.images[0].imageHint}
         />
       </CardHeader>
       <CardContent className="flex-grow p-2">
@@ -54,7 +54,7 @@ function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: strin
           ₹{bike.pricePerHour}
           <span className="text-[11px] font-normal text-muted-foreground">/hr</span>
         </div>
-        <Button size="sm" disabled={!bike.isAvailable} onClick={() => onEnquire(bike.name)}>Enquire Now</Button>
+        <Button size="sm" variant="outline" onClick={() => onViewDetails(bike)}>View Details</Button>
       </CardFooter>
     </Card>
   );
@@ -62,16 +62,14 @@ function BikeCard({ bike, onEnquire }: { bike: Bike; onEnquire: (bikeName: strin
 
 export default function BikesPage() {
   const [filter, setFilter] = useState<BikeCategory | 'All'>('All');
-  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
-  const [selectedBike, setSelectedBike] = useState('');
+  const [selectedBike, setSelectedBike] = useState<Bike | null>(null);
 
-  const handleEnquire = (bikeName: string) => {
-    setSelectedBike(bikeName);
-    setIsEnquiryOpen(true);
+  const handleViewDetails = (bike: Bike) => {
+    setSelectedBike(bike);
   };
 
-  const handleFormSubmit = () => {
-    setIsEnquiryOpen(false);
+  const handleCloseDetails = () => {
+    setSelectedBike(null);
   };
 
   const filteredBikes = filter === 'All'
@@ -103,7 +101,7 @@ export default function BikesPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-3">
             {filteredBikes.map((bike) => (
-              <BikeCard key={bike.id} bike={bike} onEnquire={handleEnquire} />
+              <BikeCard key={bike.id} bike={bike} onViewDetails={handleViewDetails} />
             ))}
           </div>
 
@@ -115,9 +113,9 @@ export default function BikesPage() {
         </div>
       </main>
 
-      <Dialog open={isEnquiryOpen} onOpenChange={setIsEnquiryOpen}>
-        <DialogContent>
-            <EnquiryForm bikeName={selectedBike} onFormSubmit={handleFormSubmit} />
+      <Dialog open={!!selectedBike} onOpenChange={(isOpen) => !isOpen && handleCloseDetails()}>
+        <DialogContent className="max-w-3xl p-4">
+          {selectedBike && <BikeDetails bike={selectedBike} />}
         </DialogContent>
       </Dialog>
     </div>

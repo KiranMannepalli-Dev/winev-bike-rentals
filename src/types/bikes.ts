@@ -8,7 +8,8 @@ export interface Bike {
   category: BikeCategory;
   pricePerHour: number;
   isAvailable: boolean;
-  image: ImagePlaceholder;
+  images: ImagePlaceholder[];
   range: number;
   speed: number;
+  description: string;
 }

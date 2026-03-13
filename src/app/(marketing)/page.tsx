@@ -1,3 +1,7 @@
+
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -9,6 +13,9 @@ import { bikesData } from '@/lib/bikes-data';
 import { Badge } from '@/components/ui/badge';
 import { SITE_CONFIG } from '@/config/site';
 import { Zap, ShieldCheck, Wrench, Sprout, Star, MessageCircle, Bike as BikeIcon, ArrowRight } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { BikeDetails } from '@/components/BikeDetails';
+import { type Bike } from '@/types/bikes';
 
 const featuredBikes = bikesData.slice(0, 4);
 
@@ -91,17 +98,31 @@ const faqItems = [
 
 export default function Home() {
     const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
+    const [selectedBike, setSelectedBike] = useState<Bike | null>(null);
+
+    const handleViewDetails = (bike: Bike) => {
+        setSelectedBike(bike);
+    };
+
+    const handleCloseDetails = () => {
+        setSelectedBike(null);
+    };
 
     return (
         <div className="pt-12">
             <HeroSection image={heroImage} />
             <StatsSection />
             <WhyChooseUs />
-            <FeaturedFleet />
+            <FeaturedFleet onViewDetails={handleViewDetails} />
             <HowItWorks />
             <Testimonials />
             <FaqSection />
             <CtaSection />
+            <Dialog open={!!selectedBike} onOpenChange={(isOpen) => !isOpen && handleCloseDetails()}>
+              <DialogContent className="max-w-3xl p-4">
+                {selectedBike && <BikeDetails bike={selectedBike} />}
+              </DialogContent>
+            </Dialog>
         </div>
     );
 }
@@ -195,7 +216,7 @@ function WhyChooseUs() {
     );
 }
 
-function FeaturedFleet() {
+function FeaturedFleet({ onViewDetails }: { onViewDetails: (bike: Bike) => void }) {
     return (
         <section className="py-8 md:py-10 bg-card">
             <div className="container">
@@ -210,12 +231,12 @@ function FeaturedFleet() {
                          <Card key={bike.id} className="flex flex-col">
                          <CardHeader className="p-0">
                            <Image
-                             src={bike.image.imageUrl}
+                             src={bike.images[0].imageUrl}
                              alt={bike.name}
                              width={600}
                              height={400}
                              className="rounded-t-md object-cover aspect-[3/2]"
-                             data-ai-hint={bike.image.imageHint}
+                             data-ai-hint={bike.images[0].imageHint}
                            />
                          </CardHeader>
                          <CardContent className="flex-grow p-2">
@@ -232,8 +253,8 @@ function FeaturedFleet() {
                              ₹{bike.pricePerHour}
                              <span className="text-[11px] font-normal text-muted-foreground">/hr</span>
                            </div>
-                           <Button asChild size="sm">
-                            <Link href="/bikes">View Details</Link>
+                           <Button asChild size="sm" variant="outline" onClick={() => onViewDetails(bike)}>
+                            <span className="cursor-pointer">View Details</span>
                            </Button>
                          </CardFooter>
                        </Card>
