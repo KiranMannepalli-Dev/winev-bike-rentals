@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -8,7 +9,7 @@ import { usePathname } from 'next/navigation';
 
 import { SITE_CONFIG } from '@/config/site';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -96,6 +97,7 @@ export default function Navbar() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="bg-background/95 w-[80%] border-l-border p-0">
+                  <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
                   <div className="flex flex-col h-full">
                       <div className="flex justify-between items-center p-4 border-b border-border">
                           <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
