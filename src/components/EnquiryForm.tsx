@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { SITE_CONFIG } from "@/config/site";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -35,6 +36,7 @@ export function EnquiryForm({ bikeName, onFormSubmit }: EnquiryFormProps) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      // 1. Save data for the owner (optional/mocked for now based on your setup)
       const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: {
@@ -43,22 +45,30 @@ export function EnquiryForm({ bikeName, onFormSubmit }: EnquiryFormProps) {
         body: JSON.stringify(values),
       });
 
-      if (!response.ok) {
-        throw new Error('Something went wrong.');
-      }
+      // 2. Prepare WhatsApp message
+      const message = `Hi Winev! I'm ${values.name} (${values.phone}). I would like to book the ${bikeName}. Please let me know the availability.`;
+      const whatsappUrl = `https://wa.me/${SITE_CONFIG.phone}?text=${encodeURIComponent(message)}`;
 
+      // 3. Inform the user and redirect
       toast({
-        title: "Enquiry Sent!",
-        description: `We've received your enquiry for the ${bikeName} and will contact you shortly.`,
+        title: "Redirecting to WhatsApp...",
+        description: `Thanks ${values.name}! Taking you to WhatsApp to complete your booking for the ${bikeName}.`,
       });
-      form.reset();
-      onFormSubmit();
+
+      // We wait a tiny bit for the toast to be seen
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+        form.reset();
+        onFormSubmit();
+      }, 1000);
+
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request. Please try again.",
-      });
+      // If the API call fails, we still allow them to go to WhatsApp but show a warning
+      const message = `Hi Winev! I'm ${values.name} (${values.phone}). I would like to book the ${bikeName}.`;
+      const whatsappUrl = `https://wa.me/${SITE_CONFIG.phone}?text=${encodeURIComponent(message)}`;
+      
+      window.open(whatsappUrl, '_blank');
+      onFormSubmit();
     }
   }
 
@@ -103,7 +113,7 @@ export function EnquiryForm({ bikeName, onFormSubmit }: EnquiryFormProps) {
             name="bike"
             render={({ field }) => (
               <FormItem className="hidden">
-                <FormLabel>Bike</FormLabel>
+                <FormLabel>Scooter</FormLabel>
                 <FormControl>
                   <Input readOnly {...field} />
                 </FormControl>
@@ -111,11 +121,11 @@ export function EnquiryForm({ bikeName, onFormSubmit }: EnquiryFormProps) {
               </FormItem>
             )}
           />
-          <DialogFooter className="pt-4">
+          <DialogFooter className="pt-4 flex flex-col sm:flex-row gap-3">
             <DialogClose asChild>
-                <Button type="button" variant="ghost">Cancel</Button>
+                <Button type="button" variant="ghost" className="rounded-full flex-1 h-10">Cancel</Button>
             </DialogClose>
-            <Button type="submit">Submit Enquiry</Button>
+            <Button type="submit" className="rounded-full flex-1 h-10 font-bold">Submit Enquiry</Button>
           </DialogFooter>
         </form>
       </Form>

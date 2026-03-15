@@ -3,31 +3,23 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const faqItems = [
     {
         question: "What documents are required to rent a bike?",
-        answer: "You need a valid driving license, and an Aadhaar card or Passport for identity verification. For students, a valid college ID is also required for student discounts."
+        answer: "To rent a bike, you must provide a valid original Driving License, an Aadhaar Card or PAN Card, and a valid Local Address Proof (such as a utility bill or rental agreement)."
     },
     {
         question: "Is there a security deposit?",
-        answer: "No, we offer zero-deposit rentals to make the process as smooth as possible for you. We trust our riders."
+        answer: "Yes, we maintain a minimal security deposit of ₹2,000 to ensure the safety and maintenance of our premium electric fleet. This is fully refundable upon the safe return of the vehicle."
+    },
+    {
+        question: "What are the performance specs of the bikes?",
+        answer: "Our premium EV fleet offers a range of up to 100km on a full charge and a top speed of 80kmh. We also provide support for both Ather and Vida power stations for quick 45-minute charging (up to 80%)."
+    },
+    {
+        question: "Do you offer weekly or long-term rentals?",
+        answer: "Absolutely! We offer special weekly rental rates starting at ₹2,200. This is perfect for commuters or travelers looking for an affordable long-term mobility solution."
     },
     {
         question: "What is the booking process?",
-        answer: "You can book a bike easily through WhatsApp. Just send us a message with your desired bike and rental duration, and our team will guide you through the next steps."
-    },
-    {
-        question: "What happens if the bike breaks down?",
-        answer: "All our bikes are regularly serviced. However, in the rare case of a breakdown, we offer 24/7 roadside assistance. Just give us a call, and we'll be there to help."
-    },
-    {
-        question: "How and when do I pay for the rental?",
-        answer: "Payment can be made upfront via UPI, credit/debit card, or net banking. Our team will provide you with a payment link once your booking is confirmed."
-    },
-    {
-        question: "Are helmets provided with the bike?",
-        answer: "Yes, we provide one complimentary helmet with every rental for the rider's safety. A second helmet for a pillion rider is available for a small additional fee."
-    },
-    {
-        question: "Is there a limit on the kilometers I can ride?",
-        answer: "No, all our rentals come with unlimited kilometers, so you can explore without any worries. Ride as much as you want!"
+        answer: "You can book easily through WhatsApp. Just send us a message to our primary number (90148 27770) or our secondary line (78931 16525), and our team will guide you through the instant booking process."
     }
 ];
 

@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, Bike, Phone } from 'lucide-react';
+import { Menu, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import logoImage from '@/app/Winev.png';
 
 import { SITE_CONFIG } from '@/config/site';
 import { Button } from '@/components/ui/button';
@@ -16,19 +18,17 @@ import {
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import { TypingAnimation } from '../TypingAnimation';
-
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/bikes', label: 'Bikes' },
+  { href: '/bikes', label: 'Scooters' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
-  { href: '/faq', label: 'FAQ' },
 ];
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
@@ -40,6 +40,14 @@ export default function Navbar() {
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
+        // Handle background change
+        if (window.scrollY > 10) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+
+        // Handle show/hide
         if (window.scrollY > 50 && window.scrollY > lastScrollY) {
           setHidden(true);
         } else {
@@ -63,21 +71,25 @@ export default function Navbar() {
       }}
       animate={hidden ? 'hidden' : 'visible'}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-sm border-b border-border"
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+        isScrolled 
+          ? "bg-white/70 backdrop-blur-md border-border/50 shadow-sm" 
+          : "bg-white border-transparent"
+      )}
     >
       <div className="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <Bike className="h-5 w-5 text-primary" />
-          <TypingAnimation text="WINEV" className="text-base font-semibold text-foreground uppercase" />
+          <Image src={logoImage} alt="Winev Logo" className="h-8 w-auto object-contain" />
         </Link>
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-6 ml-auto mr-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground",
-                pathname === link.href && "text-foreground"
+                "text-[11px] font-medium text-zinc-600 transition-colors hover:text-zinc-900",
+                pathname === link.href && "text-zinc-900"
               )}
             >
               {link.label}
@@ -85,7 +97,7 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="hidden lg:flex items-center gap-4">
-            <a href={`tel:${SITE_CONFIG.phone}`} className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground hover:text-foreground">
+            <a href={`tel:${SITE_CONFIG.phone}`} className="flex items-center gap-2 text-[11px] font-medium text-zinc-600 hover:text-zinc-900">
                 <Phone className="h-3 w-3" />
                 {SITE_CONFIG.phoneDisplay}
             </a>
@@ -97,7 +109,7 @@ export default function Navbar() {
           {isMounted && (
             <DropdownMenu open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Button variant="ghost" size="icon" className="h-8 w-8 text-zinc-900">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>

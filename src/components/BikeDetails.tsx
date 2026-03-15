@@ -60,7 +60,7 @@ export function BikeDetails({ bike }: BikeDetailsProps) {
                         <Badge variant={bike.isAvailable ? 'available' : 'unavailable'}>
                             {bike.isAvailable ? 'Available' : 'Booked'}
                         </Badge>
-                        <Badge variant="category">{bike.category}</Badge>
+                        {/* Category removed as only scooters exist */}
                     </div>
                     <p className="mt-4 text-sm text-muted-foreground">{bike.description}</p>
                     <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
@@ -86,7 +86,7 @@ export function BikeDetails({ bike }: BikeDetailsProps) {
                                 ₹{bike.pricePerHour}
                                 <span className="text-sm font-normal text-muted-foreground">/hr</span>
                             </p>
-                            <Button size="sm" disabled={!bike.isAvailable} onClick={handleEnquire}>
+                            <Button size="default" className="rounded-full shadow-md font-bold" disabled={!bike.isAvailable} onClick={handleEnquire}>
                                 Enquire Now
                             </Button>
                         </div>

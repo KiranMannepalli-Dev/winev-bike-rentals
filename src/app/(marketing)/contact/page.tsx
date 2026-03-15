@@ -11,8 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { SITE_CONFIG } from "@/config/site";
 import { Mail, Phone, MapPin } from "lucide-react";
-import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -22,7 +21,6 @@ const formSchema = z.object({
 
 export default function ContactPage() {
   const { toast } = useToast();
-  const mapImage = PlaceHolderImages.find((p) => p.id === 'contact-map');
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -138,24 +136,69 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-              <div>
-                {mapImage && (
-                  <a href={SITE_CONFIG.googleMapsUrl} target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={mapImage.imageUrl}
-                      alt={mapImage.description}
-                      width={600}
-                      height={450}
-                      className="rounded-md aspect-video sm:aspect-[4/3] object-cover"
-                      data-ai-hint={mapImage.imageHint}
-                    />
-                  </a>
-                )}
+              <div className="w-full aspect-video max-w-sm rounded-md overflow-hidden border border-border shadow-sm">
+                <iframe
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(SITE_CONFIG.address.full)}&z=17&output=embed`}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Winev Scooter Rental Location"
+                ></iframe>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-zinc-950">
+        <div className="container max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-sm font-medium text-emerald-500 tracking-wide">Frequently Asked Questions</h2>
+            <p className="mt-2 text-[11px] text-zinc-400">Quick answers to common questions about our scooter rentals.</p>
+          </div>
+          
+          <div className="max-w-2xl mx-auto">
+            <Accordion type="single" collapsible className="w-full border-none">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="border-zinc-800">
+                  <AccordionTrigger className="text-left text-[11px] text-white hover:text-emerald-500 hover:no-underline py-4 font-medium">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[10px] text-zinc-400 leading-relaxed pb-4">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
     </div>
   );
 }
+
+const faqItems = [
+    {
+        question: "What documents are required to rent a scooter?",
+        answer: "To rent a scooter, you must provide a valid original Driving License, an Aadhaar Card or PAN Card, and a valid local address proof (such as a utility bill or rental agreement)."
+    },
+    {
+        question: "Is there a security deposit?",
+        answer: "Yes, we maintain a minimal security deposit of ₹2,000 to ensure the safety and maintenance of our premium electric fleet. This is fully refundable upon the safe return of the vehicle."
+    },
+    {
+        question: "What are the performance specs of the scooters?",
+        answer: "Our premium EV fleet offers a range of up to 100km on a full charge and a top speed of 80kmh. Fast charging (up to 80%) is available in just 45 minutes."
+    },
+    {
+        question: "Do you offer weekly or long-term rentals?",
+        answer: "Absolutely! We offer special weekly rental rates starting at ₹2,200. This is perfect for commuters looking for an affordable and sustainable mobility solution."
+    },
+    {
+        question: "What is the booking process?",
+        answer: "You can book easily through WhatsApp. Just send us a message to our primary number (90148 27770), and our team will guide you through the instant booking process."
+    }
+];
