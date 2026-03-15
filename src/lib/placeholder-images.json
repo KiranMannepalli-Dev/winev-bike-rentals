@@ -1,0 +1,130 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A sleek electric bike parked on a modern city street at dusk.",
+      "imageUrl": "/Hero2.jpg",
+      "imageHint": "electric bike city"
+    },
+    {
+      "id": "bike-01-1",
+      "description": "Front view of a sporty black and green electric scooter.",
+      "imageUrl": "https://picsum.photos/seed/bike1/600/400",
+      "imageHint": "electric scooter"
+    },
+    {
+      "id": "bike-01-2",
+      "description": "Side profile of a sporty black and green electric scooter.",
+      "imageUrl": "https://picsum.photos/seed/bike1-2/600/400",
+      "imageHint": "electric scooter side"
+    },
+    {
+      "id": "bike-01-3",
+      "description": "Dashboard view of a sporty black and green electric scooter.",
+      "imageUrl": "https://picsum.photos/seed/bike1-3/600/400",
+      "imageHint": "scooter dashboard"
+    },
+    {
+      "id": "bike-02-1",
+      "description": "Side view of a white minimalist electric moped.",
+      "imageUrl": "https://picsum.photos/seed/bike2/600/400",
+      "imageHint": "electric moped"
+    },
+    {
+      "id": "bike-02-2",
+      "description": "Front three-quarter view of a white minimalist electric moped.",
+      "imageUrl": "https://picsum.photos/seed/bike2-2/600/400",
+      "imageHint": "white moped"
+    },
+    {
+      "id": "bike-02-3",
+      "description": "Close-up of the headlight of a white minimalist electric moped.",
+      "imageUrl": "https://picsum.photos/seed/bike2-3/600/400",
+      "imageHint": "moped headlight"
+    },
+    {
+      "id": "bike-03-1",
+      "description": "A rugged-looking electric mountain bike on a trail.",
+      "imageUrl": "https://picsum.photos/seed/bike3/600/400",
+      "imageHint": "electric mountain"
+    },
+    {
+      "id": "bike-03-2",
+      "description": "An electric mountain bike standing on a rocky overlook.",
+      "imageUrl": "https://picsum.photos/seed/bike3-2/600/400",
+      "imageHint": "mountain bike"
+    },
+    {
+      "id": "bike-03-3",
+      "description": "Close-up of the suspension of an electric mountain bike.",
+      "imageUrl": "https://picsum.photos/seed/bike3-3/600/400",
+      "imageHint": "bike suspension"
+    },
+    {
+      "id": "bike-04-1",
+      "description": "A stylish retro-style electric bike.",
+      "imageUrl": "https://picsum.photos/seed/bike4/600/400",
+      "imageHint": "retro bike"
+    },
+    {
+      "id": "bike-04-2",
+      "description": "A stylish retro-style electric bike from the side.",
+      "imageUrl": "https://picsum.photos/seed/bike4-2/600/400",
+      "imageHint": "retro bike side"
+    },
+    {
+      "id": "bike-04-3",
+      "description": "Close up of the seat of a stylish retro-style electric bike.",
+      "imageUrl": "https://picsum.photos/seed/bike4-3/600/400",
+      "imageHint": "bike seat"
+    },
+    {
+      "id": "bike-05-1",
+      "description": "A futuristic-looking high-performance electric motorcycle.",
+      "imageUrl": "https://picsum.photos/seed/bike5/600/400",
+      "imageHint": "electric motorcycle"
+    },
+    {
+      "id": "bike-05-2",
+      "description": "Side view of a futuristic-looking high-performance electric motorcycle.",
+      "imageUrl": "https://picsum.photos/seed/bike5-2/600/400",
+      "imageHint": "motorcycle side"
+    },
+    {
+      "id": "bike-05-3",
+      "description": "A futuristic-looking high-performance electric motorcycle on a city street.",
+      "imageUrl": "https://picsum.photos/seed/bike5-3/600/400",
+      "imageHint": "city motorcycle"
+    },
+    {
+      "id": "bike-06-1",
+      "description": "A foldable compact electric bike, perfect for commuters.",
+      "imageUrl": "https://picsum.photos/seed/bike6/600/400",
+      "imageHint": "foldable bike"
+    },
+    {
+      "id": "bike-06-2",
+      "description": "A folded compact electric bike.",
+      "imageUrl": "https://picsum.photos/seed/bike6-2/600/400",
+      "imageHint": "folded bike"
+    },
+    {
+      "id": "bike-06-3",
+      "description": "A person riding a foldable compact electric bike.",
+      "imageUrl": "https://picsum.photos/seed/bike6-3/600/400",
+      "imageHint": "riding bike"
+    },
+    {
+      "id": "about-us-image",
+      "description": "Team of mechanics working on electric bikes in a modern workshop.",
+      "imageUrl": "https://picsum.photos/seed/about/800/600",
+      "imageHint": "bike workshop"
+    },
+    {
+      "id": "contact-map",
+      "description": "A map showing the location of the bike rental shop.",
+      "imageUrl": "https://picsum.photos/seed/map/600/450",
+      "imageHint": "city map"
+    }
+  ]
+}
