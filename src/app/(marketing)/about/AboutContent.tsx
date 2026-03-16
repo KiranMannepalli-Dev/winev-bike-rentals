@@ -13,9 +13,9 @@ export default function AboutContent() {
   const teamMembers = [
     { name: 'Y. Arun Kumar', role: 'Founder', image: '/Arun 1.jpeg' },
     { name: 'D. Anil Kumar', role: 'Founder', avatar: 'AK' },
-    { name: 'Vishnu', role: 'Operations', avatar: 'VN' },
+    { name: 'Vishnu', role: 'Operations', image: '/Vishnu Operation team winev.jpeg' },
     { name: 'Kiran', role: 'Operations', image: '/Core Team operations-1.jpeg' },
-    { name: 'Ella', role: 'Customer Success', avatar: 'EL' },
+    { name: 'Ella', role: 'Customer Success', image: '/Ella Operation team winev.png' },
   ];
 
   return (

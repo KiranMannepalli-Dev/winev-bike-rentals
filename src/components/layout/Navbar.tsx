@@ -6,7 +6,6 @@ import { Menu, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import logoImage from '@/app/Winev.png';
 
 import { SITE_CONFIG } from '@/config/site';
 import { Button } from '@/components/ui/button';
@@ -80,7 +79,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto flex h-12 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <Image src={logoImage} alt="Winev Logo" className="h-8 w-auto object-contain" />
+          <Image src="/Second Logo for Winev.png" alt="Winev Logo" width={80} height={32} className="h-8 w-auto object-contain" />
         </Link>
         <nav className="hidden lg:flex items-center gap-6 ml-auto mr-8">
           {navLinks.map((link) => (

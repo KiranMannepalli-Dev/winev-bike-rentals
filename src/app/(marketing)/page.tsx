@@ -4,7 +4,7 @@ import { SITE_CONFIG } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Premium EV Scooter Rentals in Hyderabad | Eco-Friendly Urban Mobility',
-  description: 'Rent premium electric scooters in Hyderabad starting at ₹20/hr. Minimal deposit, GPS-tracked fleet, and instant WhatsApp booking. Join the green revolution with Winev.',
+  description: 'Rent premium electric scooters in Hyderabad starting at ₹35/hr. Minimal deposit, GPS-tracked fleet, and instant WhatsApp booking. Join the green revolution with Winev.',
   alternates: {
     canonical: '/',
   },

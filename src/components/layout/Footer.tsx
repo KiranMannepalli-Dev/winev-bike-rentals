@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Instagram, Youtube, Facebook, MapPin, Phone, Mail, Clock, Heart } from 'lucide-react';
 import Image from 'next/image';
-import logoImage from '@/app/Winev.png';
+const logoSrc = '/Second Logo for Winev.png';
 import { SITE_CONFIG } from '@/config/site';
 import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
@@ -34,7 +34,7 @@ const Footer = () => {
   };
 
   const social = [
-    { name: 'instagram', href: '#', icon: Instagram },
+    { name: 'instagram', href: SITE_CONFIG.instagram, icon: Instagram },
     { name: 'youtube', href: '#', icon: Youtube },
     { name: 'facebook', href: '#', icon: Facebook },
   ];
@@ -45,16 +45,23 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <Image src={logoImage} alt="Winev Logo" className="h-8 w-auto object-contain" />
+              <Image src={logoSrc} alt="Winev Logo" width={80} height={32} className="h-8 w-auto object-contain" />
             </Link>
             <p className="text-black/70 text-xs max-w-xs leading-relaxed">
               {SITE_CONFIG.description.split('.')[0]}.
             </p>
             <div className="flex space-x-4">
               {social.map((item) => (
-                <Link key={item.name} href={item.href} className="text-black/60 hover:text-emerald-900 transition-colors">
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.name}
+                  className="text-black/60 hover:text-emerald-900 transition-colors"
+                >
                   <item.icon className="h-4 w-4" />
-                </Link>
+                </a>
               ))}
             </div>
           </div>

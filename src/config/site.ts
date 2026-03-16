@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: "Winev Scooter Rental",
-  title: "Winev Scooter Rental Hyderabad | Premium EV Scooter Rentals from ₹20/hr",
-  description:  "Rent from our fleet of 15+ premium electric scooters in Hyderabad from ₹20/hr. Range 100km, Speed 80kmh. Minimal deposit, GPS tracked fleet. Book on WhatsApp instantly.",
+  title: "Winev Scooter Rental Hyderabad | Premium EV Scooter Rentals from ₹35/hr",
+  description:  "Rent from our fleet of 15+ premium electric scooters in Hyderabad from ₹35/hr. Range 100km, Speed 80kmh. Minimal deposit, GPS tracked fleet. Book on WhatsApp instantly.",
   legalName: "Ashwin Traders",
   tagline: "Premium Rides for Every Journey.",
   phone: "919014827770",
@@ -20,6 +20,7 @@ export const SITE_CONFIG = {
   coordinates: { lat: 17.3472448, lng: 78.5251052 },
   hours: "Mon–Sat: 8:00 AM – 6:00 PM | Sun: 8:00 AM – 1:00 PM Busy Day",
   whatsapp: "919014827770",
+  instagram: "https://www.instagram.com/winevbike",
   url: "https://winev.in", // Replace with actual domain
   googleMapsUrl: "https://www.google.com/maps/place/Winev+Bike+Rental(Ashwin+traders)/@17.3472448,78.5251052,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb99005b8ca1e7:0xf01abdfa866df6b2!8m2!3d17.3472448!4d78.5251052!16s%2Fg%2F11yrln8392",
   stats: {

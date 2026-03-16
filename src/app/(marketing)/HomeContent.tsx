@@ -71,7 +71,7 @@ const whyChooseUsItems = [
     {
         icon: IndianRupee,
         title: "Affordable EV Rentals",
-        description: "Premium rides that fit your budget, starting as low as ₹15.27 per hour."
+        description: "Premium rides that fit your budget, starting as low as ₹35 per hour."
     },
     {
         icon: UserCheck,
@@ -100,10 +100,10 @@ const rentalPlans = [
         id: "hourly",
         title: "Hourly Rentals",
         subtitle: "Perfect for short rides around the city.",
-        price: "₹20",
+        price: "₹35",
         unit: "per hour",
         details: [
-            { label: "Minimum Booking", value: "6 hours" },
+            { label: "Minimum Booking", value: "12 hours" },
             { label: "Ideal for", value: "Quick trips, errands & short commutes" }
         ],
         highlight: false
@@ -128,7 +128,7 @@ const rentalPlans = [
         unit: "per week",
         details: [
             { label: "Per Day", value: "₹366" },
-            { label: "Per Hour", value: "₹15.27" },
+            { label: "Per Hour", value: "₹35" },
             { label: "Ideal for", value: "Work commute & extended usage" }
         ],
         highlight: true
@@ -402,7 +402,7 @@ function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
                             />
                         </h1>
                         <p className="mt-4 text-[11px] sm:text-xs md:text-sm lg:text-[15px] text-zinc-400 drop-shadow-lg max-w-[320px] md:max-w-md leading-relaxed opacity-95 font-medium">
-                            Rent from our fleet of 15+ premium electric scooters in Hyderabad from ₹20/hr. <br className="hidden md:block" />
+                            Rent from our fleet of 15+ premium electric scooters in Hyderabad from ₹35/hr. <br className="hidden md:block" />
                             Minimal deposit, GPS tracked & cleaned fleet. Book on WhatsApp instantly.
                         </p>
                         <div className="mt-10 md:mt-10 flex justify-start">
