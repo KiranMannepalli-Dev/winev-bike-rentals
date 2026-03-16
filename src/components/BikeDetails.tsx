@@ -36,13 +36,13 @@ export function BikeDetails({ bike }: BikeDetailsProps) {
                             {bike.images.map((image, index) => (
                                 <CarouselItem key={index}>
                                     <Card>
-                                        <CardContent className="p-0">
+                                        <CardContent className="p-0 bg-zinc-50/80">
                                             <Image
                                                 src={image.imageUrl}
                                                 alt={`${bike.name} image ${index + 1}`}
                                                 width={600}
                                                 height={400}
-                                                className="rounded-md object-cover aspect-[3/2]"
+                                                className="rounded-md object-contain aspect-[3/2] p-4"
                                                 data-ai-hint={image.imageHint}
                                             />
                                         </CardContent>
