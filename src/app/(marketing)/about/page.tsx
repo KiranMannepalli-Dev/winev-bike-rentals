@@ -11,9 +11,11 @@ export default function AboutPage() {
   const aboutImage = PlaceHolderImages.find(p => p.id === 'about-us-image');
 
   const teamMembers = [
-    { name: 'Arun', role: 'Founder', image: '/Arun 1.jpeg' },
-    { name: 'Ashwin Kumar', role: 'Operations', avatar: 'AK' },
-    { name: 'Priya Sharma', role: 'Customer Success', avatar: 'PS' },
+    { name: 'Y. Arun Kumar', role: 'Founder', image: '/Arun 1.jpeg' },
+    { name: 'D. Anil Kumar', role: 'Founder', avatar: 'DK' },
+    { name: 'Vishnu', role: 'Operations', avatar: 'VN' },
+    { name: 'Kiran', role: 'Operations', image: '/Core Team operations-1.jpeg' },
+    { name: 'Ella', role: 'Customer Success', avatar: 'EL' },
   ];
 
   return (
@@ -34,21 +36,21 @@ export default function AboutPage() {
               </div>
               
               <h1 className="text-2xl md:text-5xl font-headline font-medium text-white tracking-tight leading-none mb-6 md:whitespace-nowrap">
-                Our Journey & <span className="text-primary italic">Story</span>
+                About <span className="text-primary italic">us</span>
               </h1>
               
               <p className="text-[13px] md:text-base text-zinc-400 leading-relaxed text-justify tracking-tight opacity-95 max-w-2xl mb-8">
-                Revolutionizing urban mobility in Hyderabad since 2023. We started with a mission to provide sustainable, premium electric transportation that makes city travel effortless, reliable, and eco-friendly for every citizen.
+                Revolutionizing urban mobility in Hyderabad since 2025. We started with a mission to provide sustainable, premium electric transportation that makes city travel effortless, reliable, and eco-friendly for every citizen.
               </p>
 
               <div className="flex items-center gap-10">
                   <div className="text-center">
-                      <p className="text-xl font-bold text-white">2023</p>
+                      <p className="text-xl font-bold text-white">2025</p>
                       <p className="text-[9px] uppercase tracking-widest text-emerald-500 font-bold">Launched</p>
                   </div>
                   <div className="h-8 w-[1px] bg-zinc-800" />
                   <div className="text-center">
-                      <p className="text-xl font-bold text-white">20+</p>
+                      <p className="text-xl font-bold text-white">15+</p>
                       <p className="text-[9px] uppercase tracking-widest text-emerald-500 font-bold">Fleet</p>
                   </div>
               </div>
@@ -67,18 +69,18 @@ export default function AboutPage() {
             transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
             className="absolute right-0 bottom-0 flex items-end justify-end h-full w-full overflow-visible"
           >
-            <div className="relative h-full w-full flex items-end justify-end">
-              {/* Soft White Bottom Shadow - Smooth Glow Type */}
-              <div className="absolute -bottom-10 right-0 w-[90%] h-24 bg-white/10 blur-[100px] -z-10" />
-              <div className="absolute -bottom-4 right-10 w-[70%] h-12 bg-white/20 blur-[60px] -z-10 scale-y-[0.2]" />
-              <div className="absolute -bottom-2 right-20 w-[50%] h-6 bg-white/40 blur-[30px] -z-10 scale-y-[0.3]" />
+            <div className="relative h-full w-full flex items-end justify-end overflow-visible">
+              {/* Silver Glow/Bottom Shadow Effect - Layered for depth */}
+              <div className="absolute -bottom-8 right-24 md:right-48 lg:right-56 w-[60%] h-14 bg-white/10 blur-[50px] rounded-[100%] -z-10" />
+              <div className="absolute -bottom-3 right-32 md:right-56 lg:right-64 w-[40%] h-6 bg-white/20 blur-[25px] rounded-[100%] -z-10" />
+              <div className="absolute -bottom-1 right-40 md:right-64 lg:right-72 w-[20%] h-2 bg-zinc-100/40 blur-[10px] rounded-[100%] -z-10" />
               
               <Image
-                src="/Bikes/PhotoshopExtension_Image (5).png"
+                src="/Bikes/Scooter png 1.jpg"
                 alt="Premium Winev Scooter"
-                width={850}
-                height={650}
-                className="w-auto h-[110%] lg:h-[120%] object-contain object-right-bottom z-10 drop-shadow-[0_45px_45px_rgba(0,0,0,0.8)] mr-[-2px]" 
+                width={800}
+                height={600}
+                className="w-auto h-[85%] lg:h-[95%] object-contain object-bottom z-10 drop-shadow-[0_45px_45px_rgba(0,0,0,0.8)] mr-24 md:mr-48 lg:mr-56" 
                 priority
               />
             </div>
@@ -103,21 +105,21 @@ export default function AboutPage() {
               
               <div className="space-y-4 text-muted-foreground">
                 <p className="text-[13px] leading-snug text-justify tracking-tight opacity-90">
-                  Founded in 2023, Winev Scooter Rental started with a mission to provide affordable, sustainable transportation in Hyderabad. We saw growing congestion and knew there had to be a better way to get around.
+                  Founded in 2025, Winev Scooter Rental started with a mission to provide affordable, sustainable transportation in Hyderabad. We saw growing congestion and knew there had to be a better way to get around.
                 </p>
                 <p className="text-[13px] leading-snug text-justify tracking-tight opacity-90">
-                  From ten scooters, we've grown into a trusted local name with a fleet of 20+ premium EVs, dedicated to exceptional service and a greener future for urban mobility.
+                  From ten scooters, we've grown into a trusted local name with a fleet of 15+ premium EVs, dedicated to exceptional service and a greener future for urban mobility.
                 </p>
               </div>
               
               <div className="pt-2 flex items-center gap-6">
                   <div>
-                      <p className="text-lg font-bold text-foreground">2023</p>
+                      <p className="text-lg font-bold text-foreground">2025</p>
                       <p className="text-[9px] uppercase tracking-wider text-emerald-600 font-bold">Launched</p>
                   </div>
                   <div className="h-6 w-[1px] bg-border" />
                   <div>
-                      <p className="text-lg font-bold text-foreground">20+</p>
+                      <p className="text-lg font-bold text-foreground">15+</p>
                       <p className="text-[9px] uppercase tracking-wider text-emerald-600 font-bold">Scooters</p>
                   </div>
               </div>
@@ -143,8 +145,8 @@ export default function AboutPage() {
                   <div className="absolute bottom-0 inset-x-0 h-[22%] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                   
                   <div className="absolute bottom-3 left-4 right-4">
-                      <p className="text-white font-medium text-sm tracking-tight text-shadow-sm">Arun</p>
-                      <p className="text-primary/90 text-[8px] uppercase tracking-widest font-bold">Founder</p>
+                      <p className="text-white font-medium text-sm tracking-tight text-shadow-sm leading-tight">Y. Arun Kumar & D. Anil Kumar</p>
+                      <p className="text-primary/90 text-[8px] uppercase tracking-widest font-bold">Founders</p>
                   </div>
                 </div>
               </div>
@@ -184,9 +186,9 @@ export default function AboutPage() {
 
       <section className="py-16 md:py-20 bg-zinc-950">
         <div className="container max-w-4xl">
-          <h2 className="text-sm font-medium text-center text-emerald-500 mb-12 tracking-wide">Operations Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 max-w-xl mx-auto gap-8 px-4">
-            {teamMembers.slice(1).map((member) => (
+          <h2 className="text-sm font-medium text-center text-emerald-500 mb-12 tracking-wide font-headline uppercase tracking-[0.3em]">Core Team</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto gap-8 px-4">
+            {teamMembers.slice(2).map((member) => (
               <motion.div
                 key={member.name}
                 whileHover={{ y: -5 }}
@@ -195,7 +197,11 @@ export default function AboutPage() {
                 <Card className="text-center border border-zinc-800 bg-zinc-900/40 shadow-2xl backdrop-blur-sm">
                   <CardContent className="p-8">
                     <Avatar className="h-20 w-20 mx-auto border-2 border-zinc-800 shadow-inner">
-                      <AvatarImage src={`https://picsum.photos/seed/${member.avatar}/80/80`} />
+                      {member.image ? (
+                        <AvatarImage src={member.image} className="object-cover" />
+                      ) : (
+                        <AvatarImage src={`https://picsum.photos/seed/${member.avatar}/80/80`} />
+                      )}
                       <AvatarFallback className="bg-zinc-800 text-zinc-400 text-xs font-bold">{member.avatar}</AvatarFallback>
                     </Avatar>
                     <h3 className="mt-5 text-sm font-medium text-white tracking-tight">{member.name}</h3>

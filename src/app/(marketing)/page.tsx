@@ -12,38 +12,140 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { bikesData } from '@/lib/bikes-data';
 import { Badge } from '@/components/ui/badge';
 import { SITE_CONFIG } from '@/config/site';
-import { Zap, ShieldCheck, Wrench, Sprout, Star, MessageCircle, Bike as BikeIcon, ArrowRight, CreditCard, UserCheck, GraduationCap } from 'lucide-react';
+import { Zap, ShieldCheck, Wrench, Sprout, Star, MessageCircle, Bike as BikeIcon, ArrowRight, CreditCard, UserCheck, GraduationCap, Clock, CalendarDays, Leaf, Search, Smile, CheckCircle2, IndianRupee, Gauge } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { BikeDetails } from '@/components/BikeDetails';
 import { motion } from "framer-motion";
 import { type Bike } from '@/types/bikes';
 import { LeadCaptureModal } from '@/components/LeadCaptureModal';
 import { ContactModal } from '@/components/ContactModal';
-import { PromotionalModal } from '@/components/PromotionalModal';
 import { useEffect } from 'react';
 
-const featuredBikes = bikesData.slice(0, 4);
+const featuredBikes = bikesData.slice(0, 5);
+
+function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: Bike) => void; }) {
+  return (
+    <Card className="flex flex-col">
+      <CardHeader className="p-0 overflow-hidden">
+        <div className="bg-zinc-50/80 p-8 flex items-center justify-center aspect-square">
+          <Image
+            src={bike.images[0].imageUrl}
+            alt={bike.name}
+            width={240}
+            height={240}
+            className="w-full h-full object-contain"
+            data-ai-hint={bike.images[0].imageHint}
+          />
+        </div>
+      </CardHeader>
+      <CardContent className="flex-grow p-2">
+        <div className="flex justify-between items-start">
+          <CardTitle className="text-[11px] font-semibold">{bike.name}</CardTitle>
+          <Badge variant={bike.isAvailable ? 'available' : 'unavailable'}>
+            {bike.isAvailable ? 'Available' : 'Booked'}
+          </Badge>
+        </div>
+        
+        <div className="mt-2 flex justify-between text-[11px] text-muted-foreground">
+            <div className="flex items-center gap-1.5">
+                <Zap className="h-3 w-3 text-primary" />
+                <span>{bike.range} km</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+                <Gauge className="h-3 w-3 text-primary" />
+                <span>{bike.speed} km/h</span>
+            </div>
+        </div>
+
+      </CardContent>
+      <CardFooter className="p-2 pt-0 flex justify-between items-center">
+        <div className="font-semibold text-xs">
+          ₹{bike.pricePerHour}
+          <span className="text-[11px] font-normal text-muted-foreground">/hr</span>
+        </div>
+        <Button size="sm" variant="outline" className="rounded-full px-4" onClick={() => onViewDetails(bike)}>View Details</Button>
+      </CardFooter>
+    </Card>
+  );
+}
 
 const whyChooseUsItems = [
     {
-        icon: Zap,
-        title: "Fast Charging",
-        description: "Charge up to 80% in just 45 minutes at Ather or Vida power stations."
+        icon: IndianRupee,
+        title: "Affordable EV Rentals",
+        description: "Premium rides that fit your budget, starting as low as ₹15.27 per hour."
+    },
+    {
+        icon: UserCheck,
+        title: "Flexible Rental Plans",
+        description: "From hourly errands to monthly commutes, we have a plan for every need."
+    },
+    {
+        icon: Search,
+        title: "Easy Online Booking",
+        description: "Hassle-free booking instantly via WhatsApp and smooth documentation."
+    },
+    {
+        icon: Leaf,
+        title: "Eco-Friendly Electric Bikes",
+        description: "Zero emissions, 100% sustainable. Join the green revolution in Hyderabad."
     },
     {
         icon: ShieldCheck,
-        title: "Minimal Deposit",
-        description: "Enjoy premium rentals with a minimal refundable security deposit of just ₹2,000."
+        title: "Smooth and Reliable Rides",
+        description: "Well-maintained, sanitized, and GPS-tracked fleet for your absolute safety."
+    }
+];
+
+const rentalPlans = [
+    {
+        id: "hourly",
+        title: "Hourly Rentals",
+        subtitle: "Perfect for short rides around the city.",
+        price: "₹20",
+        unit: "per hour",
+        details: [
+            { label: "Minimum Booking", value: "6 hours" },
+            { label: "Ideal for", value: "Quick trips, errands & short commutes" }
+        ],
+        highlight: false
     },
     {
-        icon: Wrench,
+        id: "daily",
+        title: "Daily Rentals",
+        subtitle: "Best option for full-day usage and city travel.",
+        price: "₹449",
+        unit: "per day",
+        details: [
+            { label: "Hourly Rate", value: "₹18.75 /hr" },
+            { label: "Ideal for", value: "Daily commuting & city exploration" }
+        ],
+        highlight: false
+    },
+    {
+        id: "weekly",
         title: "Weekly Rentals",
-        description: "Special long-term rates starting at ₹2,200/week for unbeatable value."
+        subtitle: "Great for longer usage with better savings.",
+        price: "₹2,199",
+        unit: "per week",
+        details: [
+            { label: "Per Day", value: "₹366" },
+            { label: "Per Hour", value: "₹15.27" },
+            { label: "Ideal for", value: "Work commute & extended usage" }
+        ],
+        highlight: true
     },
     {
-        icon: Sprout,
-        title: "High Performance",
-        description: "Bikes with 100km range and 80kmh top speed for a powerful urban commute."
+        id: "monthly",
+        title: "Monthly Rentals",
+        subtitle: "Most economical option for regular riders.",
+        price: "₹8,799",
+        unit: "per month",
+        details: [
+            { label: "Weekly Equivalent", value: "₹2,199" },
+            { label: "Ideal for", value: "Daily commuters & maximum savings" }
+        ],
+        highlight: false
     }
 ];
 
@@ -70,36 +172,42 @@ const testimonials = [
         name: "Mothilal Dharavath",
         role: "Verified Rider",
         avatar: "MD",
+        image: "/indian_man_customer_1_1773649197608.png",
         text: "The best service in Hyderabad. Really good response and great communication with customers. Highly recommended! ❤️"
     },
     {
         name: "Pavanchowdary",
         role: "Daily Commuter",
         avatar: "P",
+        image: "/indian_man_customer_3_1773649257654.png",
         text: "Smooth ride, low cost, best EV rental experience in the city. Truly value for money. 👍"
     },
     {
         name: "PASUNURI RAMU",
         role: "Frequent User",
         avatar: "PR",
+        image: "/indian_man_customer_2_1773649217238.png",
         text: "My friend took a scooty on rent here. They have all new scooties and they even provided free charging! Excellent service."
     },
     {
         name: "Lala",
         role: "Verified Rider",
         avatar: "L",
+        image: "/indian_woman_customer_1_1773649236229.png",
         text: "Great experience with Winev. Their services are very professional and the cost is very friendly for students and professionals alike."
     },
     {
         name: "Santosh P",
         role: "Local Guide",
         avatar: "SP",
+        image: "/indian_man_customer_4_1773649277389.png",
         text: "Good rental service available all over Hyderabad and Telangana. The bikes are well-maintained and reliable."
     },
     {
         name: "Dharavath Anil",
         role: "Verified Rider",
         avatar: "DA",
+        image: "/indian_woman_customer_2_1773649297395.png",
         text: "The best and most friendly service in Hyderabad. The staff is very cooperative and helpful throughout the process."
     }
 ];
@@ -119,7 +227,7 @@ const faqItems = [
     },
     {
         question: "Do you offer weekly rates?",
-        answer: "Yes! Weekly rentals start at just ₹2,200, offering a significant discount for long-term commuters."
+        answer: "Yes! Weekly rentals start at just ₹2,199, offering a significant discount for long-term commuters."
     },
 ];
 
@@ -149,9 +257,10 @@ export default function Home() {
 
     return (
         <div className="pt-12">
-            <HeroSection onWhatsAppClick={() => openLeadModal("Hero Promo")} />
+            <HeroSection onWhatsAppClick={() => openLeadModal("Premium Scooter")} />
             <StatsSection />
             <WhyChooseUs />
+            <RentalPlansSection />
             <FeaturedFleet onViewDetails={handleViewDetails} />
             <HowItWorks />
             <DocumentsSection />
@@ -165,7 +274,6 @@ export default function Home() {
                 bikeName={leadBikeName} 
             />
             
-            <PromotionalModal />
             <ContactModal 
                 isOpen={isContactModalOpen} 
                 onClose={() => setIsContactModalOpen(false)} 
@@ -232,6 +340,38 @@ function TypingHeadline({ mobileText, desktopText, isMobile }: { mobileText: str
     );
 }
 
+function ElectricBolt({ delay = 0, top, left, right, bottom, scale = 1, rotate = 0 }: { delay?: number; top?: string; left?: string; right?: string; bottom?: string; scale?: number; rotate?: number }) {
+    return (
+        <motion.div
+            style={{ position: 'absolute', top, left, right, bottom, zIndex: 30 }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+                opacity: [0, 0.8, 0, 1, 0.2, 0.9, 0],
+                scale: [scale * 0.8, scale * 1.2, scale],
+                x: [0, -2, 2, -1, 0],
+                y: [0, 2, -2, 1, 0]
+            }}
+            transition={{ 
+                duration: 0.2, 
+                repeat: Infinity, 
+                repeatDelay: 2 + Math.random() * 3,
+                delay 
+            }}
+            className="pointer-events-none"
+        >
+            <svg 
+                width="40" 
+                height="60" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                style={{ transform: `rotate(${rotate}deg)`, filter: 'drop-shadow(0 0 8px #10b981)' }}
+            >
+                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#10b981" />
+            </svg>
+        </motion.div>
+    );
+}
+
 function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
     const [isMobile, setIsMobile] = useState(false);
 
@@ -243,80 +383,113 @@ function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
     }, []);
 
     return (
-        <section className="relative h-[70vh] min-h-[450px] md:h-[85vh] lg:h-[90vh] text-white overflow-hidden bg-black">
-            <div className="absolute inset-0">
-                <Image
-                    src={isMobile ? '/hero/Hero Bg Mobile screen 1.png' : '/hero/Hero Bg Webscreen 2.png'}
-                    alt="Rent premium electric scooters in Hyderabad - Winev"
-                    fill
-                    className="object-cover object-center"
-                    priority
-                />
+        <section className="relative min-h-[500px] md:h-[65vh] lg:h-[70vh] text-white overflow-hidden bg-black flex items-center pt-24 md:pt-4 pb-12 md:pb-24">
+            {/* Background Base */}
+            <div className="absolute inset-0 z-0 bg-black" />
+            
+            <div className="container relative z-10 px-6 sm:px-8 md:px-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 items-center">
+                    
+                    {/* Column 1: Text Content */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="max-w-sm md:max-w-xl z-20"
+                    >
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                            <BikeIcon className="h-3 w-3 text-primary" />
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-500">Premium Mobility</span>
+                        </div>
+
+                        <h1 className="text-2xl md:text-2xl lg:text-3xl font-headline font-bold tracking-tight text-white drop-shadow-2xl leading-[1.2] mb-4">
+                            <TypingHeadline 
+                                mobileText={["Premium EV ", "Scooter Rentals"]} 
+                                desktopText={["Premium Rides for Every Journey."]} 
+                                isMobile={isMobile}
+                            />
+                        </h1>
+                        <p className="mt-4 text-[11px] sm:text-xs md:text-sm lg:text-[15px] text-zinc-400 drop-shadow-lg max-w-[320px] md:max-w-md leading-relaxed opacity-95 font-medium">
+                            Rent from our fleet of 15+ premium electric scooters in Hyderabad from ₹20/hr. <br className="hidden md:block" />
+                            Minimal deposit, GPS tracked & cleaned fleet. Book on WhatsApp instantly.
+                        </p>
+                        <div className="mt-10 md:mt-10 flex justify-start">
+                            <Button 
+                                size="sm" 
+                                className="w-[140px] md:w-[180px] h-10 md:h-11 rounded-full shadow-2xl hover:scale-105 transition-all bg-primary text-white border-none font-bold text-[11px] md:text-sm tracking-widest uppercase group px-0" 
+                                onClick={onWhatsAppClick}
+                            >
+                                <span className="mr-2">Book Now</span>
+                                <ArrowRight className="h-3.5 w-3.5 md:h-4 md:w-4 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                        </div>
+                    </motion.div>
+
+                    {/* Column 2: Image Content */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="relative flex justify-center md:justify-end items-center z-10 mt-8 md:mt-0"
+                    >
+                        {/* More balanced sizing for mobile */}
+                        <div className="relative w-full max-w-[150px] sm:max-w-[190px] md:max-w-[190px] lg:max-w-[230px]">
+                            {/* Layered Silver Glow Bottom Shadow */}
+                            <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[100%] h-14 bg-white/10 blur-[50px] rounded-[100%] pointer-events-none z-0" />
+                            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[80%] h-6 bg-white/20 blur-[25px] rounded-[100%] pointer-events-none z-0" />
+                            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[50%] h-2 bg-zinc-100/40 blur-[10px] rounded-[100%] pointer-events-none z-0" />
+
+                            {/* Electric Shock Effect Components */}
+                            <div className="absolute inset-0 z-20 pointer-events-none overflow-visible">
+                                <ElectricBolt delay={0} top="20%" left="10%" scale={0.5} rotate={45} />
+                                <ElectricBolt delay={1.5} top="40%" right="-10%" scale={0.7} rotate={-30} />
+                                <ElectricBolt delay={0.8} bottom="10%" left="30%" scale={0.6} rotate={180} />
+                                <ElectricBolt delay={2.2} top="10%" right="20%" scale={0.4} rotate={90} />
+                                <ElectricBolt delay={1.2} top="50%" left="50%" scale={0.8} rotate={0} />
+                                <ElectricBolt delay={3.0} bottom="30%" right="10%" scale={0.5} rotate={-120} />
+                            </div>
+
+                            <Image
+                                src={'/Bikes/Hero BG web and Tab home page.png'}
+                                alt="Premium Winev Scooter"
+                                width={480}
+                                height={360}
+                                className="w-full h-auto object-contain drop-shadow-[0_0_25px_rgba(16,185,129,0.3)] z-10 animate-pulse-gentle"
+                                priority
+                            />
+                        </div>
+                    </motion.div>
+
+                </div>
             </div>
-            
-            {/* Premium Multi-layered Overlays (Targeted 45-55% coverage) */}
-            {/* 1. Horizontal Overlay for Left-side Text (50% coverage) */}
-            <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-black/95 via-black/60 to-transparent w-full md:w-[50%]" />
-            
-            {/* 2. Mobile-specific Top-down Overlay (55% coverage) */}
-            {isMobile && (
-                <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-black/95 via-black/60 to-transparent h-[55%]" />
-            )}
-            
-            <div className="relative z-10 h-full flex flex-col items-start justify-start pt-14 md:justify-center md:pt-0 text-left container px-8 sm:px-8 md:px-12">
-                <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="max-w-md md:max-w-2xl"
-                >
-                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-headline font-semibold tracking-tight text-white drop-shadow-2xl leading-tight whitespace-nowrap">
-                        <TypingHeadline 
-                            mobileText={["Premium ", "EV Scooters", " Rentals"]} 
-                            desktopText={[SITE_CONFIG.tagline]} 
-                            isMobile={isMobile}
-                        />
-                    </h1>
-                    <p className="mt-3 text-[10px] sm:text-xs md:text-sm lg:text-base text-zinc-100 drop-shadow-lg max-w-[300px] md:max-w-xl leading-relaxed opacity-95 font-medium">
-                        Rent from our fleet of 20+ premium electric scooters in Hyderabad from ₹35/hr. <br className="hidden md:block" />
-                        Minimal deposit, GPS tracked & cleaned fleet. Book on WhatsApp instantly.
-                    </p>
-                    <div className="mt-5 flex justify-start">
-                        <Button 
-                            size="sm" 
-                            className="w-[120px] md:w-[200px] h-8 md:h-12 rounded-full shadow-2xl hover:scale-105 transition-all bg-primary text-white border-none font-bold text-[9px] md:text-sm tracking-widest uppercase group px-0" 
-                            onClick={onWhatsAppClick}
-                        >
-                            <span>Book Now</span>
-                            <ArrowRight className="ml-1.5 h-2.5 w-2.5 md:h-4 md:w-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                    </div>
-                </motion.div>
-            </div>
+
+            {/* Corner Decorative Blobs for Depth */}
+            <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
         </section>
     );
 }
 
 function StatsSection() {
     return (
-        <section className="bg-card border-y">
-            <div className="container py-2">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-center">
-                    <div className="p-2 border-r last:border-0">
-                        <p className="text-lg font-semibold text-primary">{SITE_CONFIG.stats.range}</p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">Top Range</p>
+        <section className="bg-card border-y border-zinc-800/50">
+            <div className="container py-4 md:py-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-2 text-center items-center">
+                    <div className="p-2 border-r border-zinc-800 last:border-0">
+                        <p className="text-xl md:text-lg font-bold text-primary tracking-tight">{SITE_CONFIG.stats.range}</p>
+                        <p className="text-[10px] md:text-[11px] uppercase tracking-widest text-muted-foreground font-semibold mt-1">Top Range</p>
                     </div>
-                    <div className="p-2 border-r last:border-0">
-                        <p className="text-lg font-semibold text-primary">{SITE_CONFIG.stats.speed}</p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">Top Speed</p>
+                    <div className="p-2 md:border-r border-zinc-800 last:border-0">
+                        <p className="text-xl md:text-lg font-bold text-primary tracking-tight">{SITE_CONFIG.stats.speed}</p>
+                        <p className="text-[10px] md:text-[11px] uppercase tracking-widest text-muted-foreground font-semibold mt-1">Top Speed</p>
                     </div>
-                     <div className="p-2 border-r last:border-0">
-                        <p className="text-lg font-semibold text-primary">₹{SITE_CONFIG.stats.weeklyRent}</p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">Weekly Rent</p>
+                    <div className="p-2 border-r border-zinc-800 last:border-0 border-t md:border-t-0 border-zinc-800/30 pt-6 md:pt-2">
+                        <p className="text-xl md:text-lg font-bold text-primary tracking-tight">₹{SITE_CONFIG.stats.weeklyRent}</p>
+                        <p className="text-[10px] md:text-[11px] uppercase tracking-widest text-muted-foreground font-semibold mt-1">Weekly Rent</p>
                     </div>
-                    <div className="p-2">
-                        <p className="text-lg font-semibold text-primary">₹{SITE_CONFIG.stats.deposit}</p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">Minimal Deposit</p>
+                    <div className="p-2 border-t md:border-t-0 border-zinc-800/30 pt-6 md:pt-2">
+                        <p className="text-xl md:text-lg font-bold text-primary tracking-tight">₹{SITE_CONFIG.stats.deposit}</p>
+                        <p className="text-[10px] md:text-[11px] uppercase tracking-widest text-muted-foreground font-semibold mt-1">Minimal Deposit</p>
                     </div>
                 </div>
             </div>
@@ -326,76 +499,134 @@ function StatsSection() {
 
 function WhyChooseUs() {
     return (
-        <section className="py-8 md:py-10">
-            <div className="container">
-                <div className="text-center max-w-xl mx-auto">
-                    <h2 className="text-lg md:text-xl font-headline font-semibold">Why Ride With Winev?</h2>
-                    <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
-                        Premium EV services with Ather & Vida power station support.
+        <section className="py-12 md:py-20 bg-background overflow-hidden">
+            <div className="container relative">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <Badge variant="outline" className="mb-4 border-primary/20 bg-primary/5 text-primary py-1 px-4 text-[10px] tracking-widest uppercase font-bold">The Winev Advantage</Badge>
+                    <h2 className="text-2xl md:text-4xl font-headline font-semibold text-foreground tracking-tight">Why Choose Winev?</h2>
+                    <p className="mt-4 text-xs md:text-base text-muted-foreground max-w-lg mx-auto leading-relaxed">
+                        We don't just rent bikes; we provide a seamless, sustainable, and premium mobility experience tailored for Hyderabad.
                     </p>
                 </div>
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {whyChooseUsItems.map((item) => (
-                        <Card key={item.title} className="text-center">
-                            <CardContent className="p-4">
-                                <item.icon className="h-6 w-6 mx-auto text-primary" />
-                                <h3 className="mt-3 text-xs md:text-sm font-semibold">{item.title}</h3>
-                                <p className="mt-1.5 text-[11px] text-muted-foreground">{item.description}</p>
-                            </CardContent>
-                        </Card>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 relative z-10">
+                    {whyChooseUsItems.map((item, idx) => (
+                        <motion.div
+                            key={item.title}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 }}
+                        >
+                            <Card className="h-full border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/30 transition-all group">
+                                <CardContent className="p-6 text-center flex flex-col items-center">
+                                    <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                                        <item.icon className="h-6 w-6 text-primary" />
+                                    </div>
+                                    <h3 className="text-sm md:text-base font-bold text-foreground mb-3">{item.title}</h3>
+                                    <p className="text-[11px] md:text-xs text-muted-foreground leading-relaxed">
+                                        {item.description}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Background Accents */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[150px] -z-10 rounded-full" />
+            </div>
+        </section>
+    );
+}
+
+function RentalPlansSection() {
+    return (
+        <section className="py-12 md:py-24 bg-zinc-950/50 border-y border-white/5 relative overflow-hidden">
+            <div className="container relative z-10">
+                <div className="text-center max-w-2xl mx-auto mb-16">
+                    <h2 className="text-2xl md:text-4xl font-headline font-semibold text-white tracking-tight">Our Rental Plans</h2>
+                    <div className="h-1 w-16 bg-primary mx-auto my-6 rounded-full" />
+                    <p className="mt-4 text-[13px] md:text-base text-zinc-400 leading-relaxed">
+                        At Winev Bike Rentals, we provide flexible rental options so you can ride when you want and for as long as you need.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {rentalPlans.map((plan, idx) => (
+                        <motion.div
+                            key={plan.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                        >
+                            <Card className={`h-full relative overflow-hidden transition-all duration-300 ${
+                                plan.highlight 
+                                ? 'bg-zinc-900 border-primary/40 shadow-[0_0_40px_rgba(16,185,129,0.1)] scale-105 z-20' 
+                                : 'bg-zinc-900/40 border-white/10 hover:border-white/25 z-10'
+                            }`}>
+                                {plan.highlight && (
+                                    <div className="absolute top-0 right-0">
+                                        <Badge className="rounded-none rounded-bl-lg bg-primary text-[10px] font-bold py-1 px-3">Most Popular</Badge>
+                                    </div>
+                                )}
+                                
+                                <CardHeader className="pb-4">
+                                    <h3 className={`text-lg font-bold mb-1 ${plan.highlight ? 'text-white' : 'text-zinc-200'}`}>{plan.title}</h3>
+                                    <p className="text-[11px] text-zinc-500 line-clamp-2 leading-relaxed">{plan.subtitle}</p>
+                                </CardHeader>
+
+                                <CardContent className="pb-8">
+                                    <div className="flex items-baseline gap-1 mb-6">
+                                        <span className={`text-3xl font-bold ${plan.highlight ? 'text-primary' : 'text-white'}`}>{plan.price}</span>
+                                        <span className="text-xs text-zinc-500">{plan.unit}</span>
+                                    </div>
+                                    
+                                    <div className="space-y-4 border-t border-white/5 pt-6">
+                                        {plan.details.map((detail, dIdx) => (
+                                            <div key={dIdx} className="flex flex-col gap-1">
+                                                <span className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold">{detail.label}</span>
+                                                <span className={`text-xs font-medium ${plan.highlight ? 'text-zinc-200' : 'text-zinc-400'}`}>
+                                                    {detail.value}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
                     ))}
                 </div>
             </div>
+
+            {/* Background elements */}
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/2 rounded-full blur-[100px]" />
         </section>
     );
 }
 
 function FeaturedFleet({ onViewDetails }: { onViewDetails: (bike: Bike) => void }) {
     return (
-        <section className="py-8 md:py-10 bg-card">
+        <section className="py-16 md:py-24 bg-card">
             <div className="container">
-                <div className="text-center max-w-xl mx-auto">
-                    <h2 className="text-lg md:text-xl font-headline font-semibold">Our Featured Scooters</h2>
-                    <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
-                        Top-of-the-line electric scooters for every city commute.
+                <div className="mb-12 flex flex-col items-center">
+                    <h2 className="text-xl md:text-3xl font-headline font-semibold text-foreground tracking-tight">Our Featured Scooters</h2>
+                    <div className="h-1 w-12 bg-primary rounded-full mt-3" />
+                    <p className="mt-4 text-xs md:text-base text-muted-foreground max-w-lg mx-auto text-center leading-relaxed">
+                        Explore our top-of-the-line electric scooters meticulously maintained for every city commute.
                     </p>
                 </div>
-                <div className="mt-6 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                     {featuredBikes.map((bike) => (
-                         <Card key={bike.id} className="flex flex-col">
-                         <CardHeader className="p-0">
-                           <Image
-                             src={bike.images[0].imageUrl}
-                             alt={bike.name}
-                             width={600}
-                             height={400}
-                             className="rounded-t-md object-cover aspect-[3/2]"
-                             data-ai-hint={bike.images[0].imageHint}
-                           />
-                         </CardHeader>
-                         <CardContent className="flex-grow p-2">
-                            <div className="flex justify-between items-start">
-                              <CardTitle className="text-[11px] font-semibold">{bike.name}</CardTitle>
-                              <Badge variant={bike.isAvailable ? 'available' : 'unavailable'} className="text-[8px] px-1 py-0 h-4">
-                                {bike.isAvailable ? 'Available' : 'Booked'}
-                              </Badge>
-                            </div>
-                            {/* Category badge removed as only scooters are available */}
-                          </CardContent>
-                          <CardFooter className="p-2 pt-0 flex justify-between items-center">
-                            <div className="font-semibold text-xs">
-                              ₹{bike.pricePerHour}
-                              <span className="text-[10px] font-normal text-muted-foreground">/hr</span>
-                            </div>
-                            <Button asChild size="sm" variant="default" className="h-7 px-3 rounded-full text-[9px] font-bold shadow-sm" onClick={() => onViewDetails(bike)}>
-                             <span className="cursor-pointer">View Details</span>
-                            </Button>
-                          </CardFooter>
-                       </Card>
+                        <BikeCard key={bike.id} bike={bike} onViewDetails={onViewDetails} />
                     ))}
                 </div>
-                <div className="mt-8 text-center">
-                    <Button asChild size="default" variant="outline" className="rounded-full shadow-sm">
+
+                <div className="mt-12 text-center">
+                    <Button asChild size="default" variant="outline" className="rounded-full shadow-sm hover:bg-primary hover:text-white transition-colors">
                         <Link href="/bikes">
                             See All Scooters <ArrowRight className="ml-1.5" />
                         </Link>
@@ -528,7 +759,11 @@ function Testimonials() {
                                 
                                 <div className="flex items-center gap-3">
                                     <Avatar className="h-10 w-10 border border-primary/10 shadow-sm">
-                                        <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name}`} alt={testimonial.name} />
+                                        {testimonial.image ? (
+                                            <AvatarImage src={testimonial.image} alt={testimonial.name} className="object-cover" />
+                                        ) : (
+                                            <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name}`} alt={testimonial.name} />
+                                        )}
                                         <AvatarFallback className="bg-primary/10 text-primary text-xs font-bold">{testimonial.avatar}</AvatarFallback>
                                     </Avatar>
                                     <div>

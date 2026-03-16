@@ -22,6 +22,7 @@ const Footer = () => {
       { href: '/about', label: 'About' },
       { href: '/contact', label: 'Contact' },
       { href: '/privacy', label: 'Privacy Policy' },
+      { href: '/terms', label: 'Terms and Conditions' },
     ],
     services: [
       { href: '/bikes', label: 'Hourly Rental' },
@@ -112,7 +113,12 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Clock className="h-4 w-4 text-emerald-900 mr-3 shrink-0" />
-                <span className="text-black/70 font-medium">{SITE_CONFIG.hours}</span>
+                <span className="text-black/70 font-medium whitespace-nowrap flex items-center">
+                  {SITE_CONFIG.hours.split('Busy Day')[0].trim()}
+                  <span className="ml-1.5 px-1.5 py-0.5 rounded bg-red-50 text-red-600 text-[9px] font-bold border border-red-100 uppercase tracking-tight shadow-sm">
+                    Busy Day
+                  </span>
+                </span>
               </li>
             </ul>
           </div>
@@ -120,9 +126,24 @@ const Footer = () => {
 
         <div className="mt-8 border-t border-border/50 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-black/60">
           <p>&copy; {currentYear ? `${currentYear} ` : ''}{SITE_CONFIG.legalName}. All Rights Reserved.</p>
-          <p className="mt-4 sm:mt-0 flex items-center gap-1.5 font-medium">
-            Made with <Heart className="h-3.5 w-3.5 text-destructive fill-destructive" /> in Hyderabad
-          </p>
+          <div className="mt-4 sm:mt-0 flex flex-col items-center sm:items-end gap-2">
+            <p className="flex items-center gap-1.5 font-medium">
+              Made with <Heart className="h-3.5 w-3.5 text-destructive fill-destructive" /> in Hyderabad
+            </p>
+            <div className="flex items-center gap-2 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+              <span className="text-[10px] text-black/50">Designed & Coded by</span>
+              <span className="font-bold text-black/80 flex items-center gap-1.5">
+                Tekloria Solutions
+                <Image 
+                  src="/tekloria-logo.png" 
+                  alt="Tekloria Logo" 
+                  width={16} 
+                  height={16} 
+                  className="w-4 h-4 object-contain rounded-sm"
+                />
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

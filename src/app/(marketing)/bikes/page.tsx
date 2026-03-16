@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { bikesData } from '@/lib/bikes-data';
 import { Bike, BikeCategory } from '@/types/bikes';
@@ -9,7 +10,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Gauge, Zap, Bike as BikeIcon } from 'lucide-react';
+import { Gauge, Zap, Bike as BikeIcon, ArrowRight, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { BikeDetails } from '@/components/BikeDetails';
@@ -19,15 +20,17 @@ import { BikeDetails } from '@/components/BikeDetails';
 function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: Bike) => void; }) {
   return (
     <Card className="flex flex-col">
-      <CardHeader className="p-0">
-        <Image
-          src={bike.images[0].imageUrl}
-          alt={bike.name}
-          width={600}
-          height={400}
-          className="rounded-t-md object-cover aspect-[3/2]"
-          data-ai-hint={bike.images[0].imageHint}
-        />
+      <CardHeader className="p-0 overflow-hidden">
+        <div className="bg-zinc-50/80 p-8 flex items-center justify-center aspect-square">
+          <Image
+            src={bike.images[0].imageUrl}
+            alt={bike.name}
+            width={240}
+            height={240}
+            className="w-full h-full object-contain"
+            data-ai-hint={bike.images[0].imageHint}
+          />
+        </div>
       </CardHeader>
       <CardContent className="flex-grow p-2">
         <div className="flex justify-between items-start">
@@ -62,7 +65,16 @@ function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: B
 }
 
 export default function BikesPage() {
+  const router = useRouter();
   const [selectedBike, setSelectedBike] = useState<Bike | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleNextPage = async () => {
+    setIsLoading(true);
+    // 1 second delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    window.location.href = '/bikes#models';
+  };
 
   const handleViewDetails = (bike: Bike) => {
     setSelectedBike(bike);
@@ -96,12 +108,12 @@ export default function BikesPage() {
               </h1>
               
               <p className="text-[13px] md:text-base text-zinc-400 leading-relaxed text-justify tracking-tight opacity-95 max-w-md mb-8">
-                Experience the next generation of urban mobility with our fleet of 20+ specialized electric scooters. Each unit is meticulously maintained, GPS-tracked, and sanitized after every trip to provide Hyderabad with the most reliable and eco-friendly ride available today.
+                Experience the next generation of urban mobility with our fleet of 15+ specialized electric scooters. Each unit is meticulously maintained, GPS-tracked, and sanitized after every trip to provide Hyderabad with the most reliable and eco-friendly ride available today.
               </p>
 
               <div className="flex items-center gap-10">
                   <div className="text-center">
-                      <p className="text-xl font-bold text-white">20+</p>
+                      <p className="text-xl font-bold text-white">15+</p>
                       <p className="text-[9px] uppercase tracking-widest text-emerald-500 font-bold">Units</p>
                   </div>
                   <div className="h-8 w-[1px] bg-zinc-800" />
@@ -154,17 +166,39 @@ export default function BikesPage() {
         <div className="absolute top-1/4 right-0 w-72 h-72 bg-emerald-900/10 rounded-full blur-[130px] pointer-events-none" />
       </section>
 
-      <main className="py-16 md:py-24 bg-background">
+      <main id="models" className="py-16 md:py-24 bg-background">
         <div className="container">
           <div className="mb-10 flex flex-col items-center">
             <h2 className="text-xl md:text-2xl font-headline font-semibold text-foreground">Available Models</h2>
             <div className="h-1 w-12 bg-emerald-500 rounded-full mt-2" />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {filteredBikes.map((bike) => (
               <BikeCard key={bike.id} bike={bike} onViewDetails={handleViewDetails} />
             ))}
+          </div>
+
+          <div className="mt-6 flex justify-end">
+            <Button 
+                variant="ghost" 
+                size="sm" 
+                disabled={isLoading}
+                className="h-8 px-0 group text-zinc-400 hover:text-primary transition-colors text-[10px] font-bold tracking-[0.2em] uppercase flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                onClick={handleNextPage}
+            >
+                {isLoading ? (
+                  <>
+                    <span>Loading</span>
+                    <Loader2 className="h-3 w-3 animate-spin text-primary" />
+                  </>
+                ) : (
+                  <>
+                    <span>Next Page</span>
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </>
+                )}
+            </Button>
           </div>
 
           {filteredBikes.length === 0 && (

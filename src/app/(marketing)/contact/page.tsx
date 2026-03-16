@@ -138,7 +138,7 @@ export default function ContactPage() {
               </div>
               <div className="w-full aspect-video max-w-sm rounded-md overflow-hidden border border-border shadow-sm">
                 <iframe
-                  src={`https://www.google.com/maps?q=${encodeURIComponent(SITE_CONFIG.address.full)}&z=17&output=embed`}
+                  src={`https://www.google.com/maps?q=${SITE_CONFIG.coordinates.lat},${SITE_CONFIG.coordinates.lng}&z=17&output=embed`}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -195,7 +195,7 @@ const faqItems = [
     },
     {
         question: "Do you offer weekly or long-term rentals?",
-        answer: "Absolutely! We offer special weekly rental rates starting at ₹2,200. This is perfect for commuters looking for an affordable and sustainable mobility solution."
+        answer: "Absolutely! We offer special weekly rental rates starting at ₹2,199. This is perfect for commuters looking for an affordable and sustainable mobility solution."
     },
     {
         question: "What is the booking process?",
