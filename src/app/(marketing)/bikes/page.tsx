@@ -1,21 +1,18 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { bikesData } from '@/lib/bikes-data';
-import { Bike, BikeCategory } from '@/types/bikes';
+import { Bike } from '@/types/bikes';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Gauge, Zap, Bike as BikeIcon, ArrowRight, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { BikeDetails } from '@/components/BikeDetails';
-
-// Redundant categories removed as only Scooters are available now
 
 function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: Bike) => void; }) {
   return (
@@ -28,7 +25,6 @@ function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: B
             width={240}
             height={240}
             className="w-full h-full object-contain"
-            data-ai-hint={bike.images[0].imageHint}
           />
         </div>
       </CardHeader>
@@ -39,7 +35,6 @@ function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: B
             {bike.isAvailable ? 'Available' : 'Booked'}
           </Badge>
         </div>
-        {/* Category badge removed as all items are scooters */}
         
         <div className="mt-2 flex justify-between text-[11px] text-muted-foreground">
             <div className="flex items-center gap-1.5">
@@ -65,15 +60,14 @@ function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: B
 }
 
 export default function BikesPage() {
-  const router = useRouter();
   const [selectedBike, setSelectedBike] = useState<Bike | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleNextPage = async () => {
     setIsLoading(true);
-    // 1 second delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     window.location.href = '/bikes#models';
+    setIsLoading(false);
   };
 
   const handleViewDetails = (bike: Bike) => {
@@ -91,7 +85,6 @@ export default function BikesPage() {
       <section className="relative w-full bg-zinc-950 overflow-hidden border-b border-zinc-900 mt-2">
         <div className="container max-w-6xl py-12 md:py-20 flex items-center min-h-[400px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center w-full">
-            {/* Left Side: Content */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -128,13 +121,10 @@ export default function BikesPage() {
                   </div>
               </div>
             </motion.div>
-
-            {/* Placeholder to maintain grid spacing */}
             <div className="hidden md:block" />
           </div>
         </div>
 
-        {/* Right Side: Image Fixed to Absolute Edge of Section */}
         <div className="absolute right-0 bottom-0 h-full w-1/2 hidden md:block pointer-events-none select-none">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -143,7 +133,6 @@ export default function BikesPage() {
             className="absolute right-0 bottom-0 flex items-end justify-end h-full w-full overflow-visible"
           >
             <div className="relative h-full w-full flex items-end justify-end">
-              {/* Soft White Bottom Shadow - Smooth Glow Type */}
               <div className="absolute -bottom-10 right-0 w-[90%] h-24 bg-white/10 blur-[100px] -z-10" />
               <div className="absolute -bottom-4 right-10 w-[70%] h-12 bg-white/20 blur-[60px] -z-10 scale-y-[0.2]" />
               <div className="absolute -bottom-2 right-20 w-[50%] h-6 bg-white/40 blur-[30px] -z-10 scale-y-[0.3]" />
@@ -160,7 +149,6 @@ export default function BikesPage() {
           </motion.div>
         </div>
 
-        {/* Dynamic Background Corner Blobs */}
         <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute top-1/4 right-0 w-72 h-72 bg-emerald-900/10 rounded-full blur-[130px] pointer-events-none" />
@@ -222,5 +210,3 @@ export default function BikesPage() {
     </div>
   );
 }
-
-    

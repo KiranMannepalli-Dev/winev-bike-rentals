@@ -12,7 +12,7 @@ export default function AboutPage() {
 
   const teamMembers = [
     { name: 'Y. Arun Kumar', role: 'Founder', image: '/Arun 1.jpeg' },
-    { name: 'D. Anil Kumar', role: 'Founder', avatar: 'DK' },
+    { name: 'D. Anil Kumar', role: 'Founder', avatar: 'AK' },
     { name: 'Vishnu', role: 'Operations', avatar: 'VN' },
     { name: 'Kiran', role: 'Operations', image: '/Core Team operations-1.jpeg' },
     { name: 'Ella', role: 'Customer Success', avatar: 'EL' },

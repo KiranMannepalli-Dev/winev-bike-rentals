@@ -8,6 +8,7 @@ import logoImage from '@/app/Winev.png';
 import { SITE_CONFIG } from '@/config/site';
 import { Badge } from '@/components/ui/badge';
 import { useEffect, useState } from 'react';
+
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
 

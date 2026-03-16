@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -19,7 +19,6 @@ import { motion } from "framer-motion";
 import { type Bike } from '@/types/bikes';
 import { LeadCaptureModal } from '@/components/LeadCaptureModal';
 import { ContactModal } from '@/components/ContactModal';
-import { useEffect } from 'react';
 
 const featuredBikes = bikesData.slice(0, 5);
 
@@ -34,7 +33,6 @@ function BikeCard({ bike, onViewDetails }: { bike: Bike; onViewDetails: (bike: B
             width={240}
             height={240}
             className="w-full h-full object-contain"
-            data-ai-hint={bike.images[0].imageHint}
           />
         </div>
       </CardHeader>
@@ -232,7 +230,6 @@ const faqItems = [
 ];
 
 export default function Home() {
-    const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
     const [selectedBike, setSelectedBike] = useState<Bike | null>(null);
     const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -319,7 +316,6 @@ function TypingHeadline({ mobileText, desktopText, isMobile }: { mobileText: str
         };
     }, [key, fullText]);
 
-    // Added "Premium Rides" and "Every Journey" to the highlights
     const parts = displayedText.split(/(EV Bikes|Rentals|Premium Rides|Every Journey)/gi);
 
     return (
@@ -384,13 +380,9 @@ function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
 
     return (
         <section className="relative min-h-[500px] md:h-[65vh] lg:h-[70vh] text-white overflow-hidden bg-black flex items-center pt-24 md:pt-4 pb-12 md:pb-24">
-            {/* Background Base */}
             <div className="absolute inset-0 z-0 bg-black" />
-            
             <div className="container relative z-10 px-6 sm:px-8 md:px-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 items-center">
-                    
-                    {/* Column 1: Text Content */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -425,21 +417,17 @@ function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
                         </div>
                     </motion.div>
 
-                    {/* Column 2: Image Content */}
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.2 }}
                         className="relative flex justify-center md:justify-end items-center z-10 mt-8 md:mt-0"
                     >
-                        {/* More balanced sizing for mobile */}
                         <div className="relative w-full max-w-[150px] sm:max-w-[190px] md:max-w-[190px] lg:max-w-[230px]">
-                            {/* Layered Silver Glow Bottom Shadow */}
                             <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[100%] h-14 bg-white/10 blur-[50px] rounded-[100%] pointer-events-none z-0" />
                             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[80%] h-6 bg-white/20 blur-[25px] rounded-[100%] pointer-events-none z-0" />
                             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[50%] h-2 bg-zinc-100/40 blur-[10px] rounded-[100%] pointer-events-none z-0" />
 
-                            {/* Electric Shock Effect Components */}
                             <div className="absolute inset-0 z-20 pointer-events-none overflow-visible">
                                 <ElectricBolt delay={0} top="20%" left="10%" scale={0.5} rotate={45} />
                                 <ElectricBolt delay={1.5} top="40%" right="-10%" scale={0.7} rotate={-30} />
@@ -459,11 +447,8 @@ function HeroSection({ onWhatsAppClick }: { onWhatsAppClick: () => void }) {
                             />
                         </div>
                     </motion.div>
-
                 </div>
             </div>
-
-            {/* Corner Decorative Blobs for Depth */}
             <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
         </section>
@@ -532,8 +517,6 @@ function WhyChooseUs() {
                         </motion.div>
                     ))}
                 </div>
-
-                {/* Background Accents */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[150px] -z-10 rounded-full" />
             </div>
         </section>
@@ -599,8 +582,6 @@ function RentalPlansSection() {
                     ))}
                 </div>
             </div>
-
-            {/* Background elements */}
             <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
             <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/2 rounded-full blur-[100px]" />
         </section>
@@ -665,21 +646,9 @@ function HowItWorks() {
 
 function DocumentsSection() {
     const docs = [
-        {
-            icon: UserCheck,
-            title: "License & ID",
-            description: "Valid Driving License and Aadhaar Card or PAN Card (Original)."
-        },
-        {
-            icon: CreditCard,
-            title: "Address Proof",
-            description: "Proof of local address (Electricity bill, rental agreement, or similar)."
-        },
-        {
-            icon: GraduationCap,
-            title: "Student ID (Optional)",
-            description: "College ID for students to unlock exclusive discount rates."
-        }
+        { icon: UserCheck, title: "License & ID", description: "Valid Driving License and Aadhaar Card or PAN Card (Original)." },
+        { icon: CreditCard, title: "Address Proof", description: "Proof of local address (Electricity bill, rental agreement, or similar)." },
+        { icon: GraduationCap, title: "Student ID (Optional)", description: "College ID for students to unlock exclusive discount rates." }
     ];
 
     return (
@@ -687,9 +656,7 @@ function DocumentsSection() {
             <div className="container">
                 <div className="text-center max-w-xl mx-auto mb-8">
                     <h2 className="text-lg md:text-xl font-headline font-semibold">Required Documents</h2>
-                    <p className="mt-2 text-[11px] md:text-xs text-muted-foreground">
-                        Please bring the following original documents for a quick and easy pickup.
-                    </p>
+                    <p className="mt-2 text-[11px] md:text-xs text-muted-foreground">Please bring the following original documents for a quick and easy pickup.</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     {docs.map((doc, idx) => (
@@ -698,9 +665,7 @@ function DocumentsSection() {
                                 <doc.icon className="h-5 w-5 text-primary" />
                             </div>
                             <h3 className="text-sm font-semibold mb-2">{doc.title}</h3>
-                            <p className="text-[10px] md:text-[11px] text-muted-foreground leading-relaxed">
-                                {doc.description}
-                            </p>
+                            <p className="text-[10px] md:text-[11px] text-muted-foreground leading-relaxed">{doc.description}</p>
                         </div>
                     ))}
                 </div>
@@ -715,11 +680,7 @@ function Testimonials() {
             <div className="container">
                 <div className="text-center max-w-2xl mx-auto mb-10">
                     <Badge variant="outline" className="mb-3 border-border bg-background shadow-sm py-1 px-3">
-                        <motion.div
-                            animate={{ y: [0, -3, 0] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                            className="mr-2"
-                        >
+                        <motion.div animate={{ y: [0, -3, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} className="mr-2">
                             <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -730,40 +691,15 @@ function Testimonials() {
                         <span className="font-bold text-foreground mr-1">4.9/5</span> Google Rating
                     </Badge>
                     <h2 className="text-xl md:text-3xl font-headline font-semibold">What Our Riders Say</h2>
-                    <p className="mt-3 text-xs md:text-base text-muted-foreground">
-                        Don't just take our word for it. Join the {SITE_CONFIG.stats.rides} happy riders who trust Winev for their daily mobility.
-                    </p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {testimonials.map((testimonial) => (
                         <Card key={testimonial.name} className="relative overflow-hidden group hover:border-primary/30 transition-all duration-300">
                             <CardContent className="p-5">
-                                <motion.div 
-                                    animate={{ y: [0, -6, 0] }}
-                                    transition={{ 
-                                        duration: 4, 
-                                        repeat: Infinity, 
-                                        ease: "easeInOut",
-                                        delay: Math.random() * 2
-                                    }}
-                                    className="absolute top-4 right-4 opacity-85 group-hover:opacity-100 transition-opacity pointer-events-none"
-                                >
-                                    <svg viewBox="0 0 24 24" className="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                                    </svg>
-                                </motion.div>
-                                
                                 <div className="flex items-center gap-3">
                                     <Avatar className="h-10 w-10 border border-primary/10 shadow-sm">
-                                        {testimonial.image ? (
-                                            <AvatarImage src={testimonial.image} alt={testimonial.name} className="object-cover" />
-                                        ) : (
-                                            <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name}`} alt={testimonial.name} />
-                                        )}
+                                        <AvatarImage src={testimonial.image} alt={testimonial.name} className="object-cover" />
                                         <AvatarFallback className="bg-primary/10 text-primary text-xs font-bold">{testimonial.avatar}</AvatarFallback>
                                     </Avatar>
                                     <div>
@@ -771,25 +707,18 @@ function Testimonials() {
                                         <p className="text-[10px] uppercase tracking-widest text-primary font-semibold">{testimonial.role}</p>
                                     </div>
                                 </div>
-                                
                                 <div className="mt-4 flex gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="h-3 w-3 fill-yellow-500 text-yellow-500" />
-                                    ))}
+                                    {[...Array(5)].map((_, i) => <Star key={i} className="h-3 w-3 fill-yellow-500 text-yellow-500" />)}
                                 </div>
-                                
-                                <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed italic">
-                                    "{testimonial.text}"
-                                </p>
+                                <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed italic">"{testimonial.text}"</p>
                             </CardContent>
                         </Card>
                     ))}
                 </div>
-                
                 <div className="mt-10 text-center">
                     <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-primary">
                         <a href={SITE_CONFIG.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                            <span>Read all 150+ reviews on Google</span>
+                            <span>Read all reviews on Google</span>
                             <ArrowRight className="h-4 w-4" />
                         </a>
                     </Button>
@@ -805,25 +734,17 @@ function FaqSection() {
             <div className="container grid md:grid-cols-2 gap-6 md:gap-10 items-center">
                 <div className="max-w-md">
                     <h2 className="text-lg md:text-xl font-headline font-semibold">Common Questions</h2>
-                    <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">
-                        Have a question? We've got answers. If you can't find what you're looking for, feel free to contact us.
-                    </p>
+                    <p className="mt-2 text-[11px] md:text-sm text-muted-foreground">Have a question? We've got answers.</p>
                      <Button asChild size="sm" variant="outline" className="mt-4">
-                        <Link href="/faq">
-                            See All FAQs
-                        </Link>
+                        <Link href="/faq">See All FAQs</Link>
                     </Button>
                 </div>
                 <div>
                      <Accordion type="single" collapsible className="w-full">
                         {faqItems.map((item, index) => (
                             <AccordionItem key={index} value={`item-${index}`}>
-                                <AccordionTrigger className="text-left text-[11px] md:text-xs hover:no-underline">
-                                    {item.question}
-                                </AccordionTrigger>
-                                <AccordionContent className="text-[10px] md:text-[11px] text-muted-foreground">
-                                    {item.answer}
-                                </AccordionContent>
+                                <AccordionTrigger className="text-left text-[11px] md:text-xs hover:no-underline">{item.question}</AccordionTrigger>
+                                <AccordionContent className="text-[10px] md:text-[11px] text-muted-foreground">{item.answer}</AccordionContent>
                             </AccordionItem>
                         ))}
                     </Accordion>
@@ -838,85 +759,29 @@ function CtaSection({ onCtaClick }: { onCtaClick: () => void }) {
     <section className="py-8 md:py-12 border-t bg-card overflow-hidden">
        <div className="container max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-left"
-              >
+              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-left">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 border border-primary/20">
                       <BikeIcon className="h-5 w-5 text-primary" />
                   </div>
-                  
-                  <h2 className="text-lg md:text-xl font-semibold mb-3 tracking-tight">
-                    Start Your <span className="text-primary italic">Electric</span> Adventure
-                  </h2>
-                  
-                  <p className="text-xs md:text-sm text-muted-foreground mb-6 leading-relaxed max-w-sm">
-                    Join thousands of happy riders in Hyderabad. Experience the future of eco-friendly urban travel with Winev.
-                  </p>
-                  
+                  <h2 className="text-lg md:text-xl font-semibold mb-3 tracking-tight">Start Your <span className="text-primary italic">Electric</span> Adventure</h2>
+                  <p className="text-xs md:text-sm text-muted-foreground mb-6 leading-relaxed max-w-sm">Join thousands of happy riders in Hyderabad. Experience the future of eco-friendly urban travel with Winev.</p>
                   <div className="flex justify-start">
-                      <Button 
-                          size="sm" 
-                          className="rounded-full shadow-md px-8 h-9 text-[11px] font-bold tracking-tight transition-all hover:scale-105 active:scale-95 bg-primary" 
-                          onClick={onCtaClick}
-                      >
-                          Enquire Now & Book
-                      </Button>
+                      <Button size="sm" className="rounded-full shadow-md px-8 h-9 text-[11px] font-bold tracking-tight transition-all hover:scale-105 active:scale-95 bg-primary" onClick={onCtaClick}>Enquire Now & Book</Button>
                   </div>
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="relative hidden md:flex justify-end items-center"
-              >
+              <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative hidden md:flex justify-end items-center">
                 <div className="relative z-10 max-w-[320px]">
-                    {/* Animated Speed Smoke/Mist Effect */}
                     <div className="absolute -right-12 top-1/2 -translate-y-1/2 z-0 pointer-events-none">
                         {[...Array(3)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, x: 0, scale: 0.8 }}
-                                animate={{ 
-                                    opacity: [0, 0.15, 0], 
-                                    x: [0, 60], 
-                                    scale: [0.8, 2.5],
-                                    filter: ["blur(8px)", "blur(24px)"]
-                                }}
-                                transition={{ 
-                                    duration: 2.5, 
-                                    repeat: Infinity, 
-                                    delay: i * 0.8,
-                                    ease: "easeOut" 
-                                }}
-                                className="absolute top-0 right-0 w-16 h-8 bg-white/40 rounded-full"
-                                style={{ top: `${i * 10 - 15}px`, right: `${i * -5}px` }}
-                            />
+                            <motion.div key={i} initial={{ opacity: 0, x: 0, scale: 0.8 }} animate={{ opacity: [0, 0.15, 0], x: [0, 60], scale: [0.8, 2.5], filter: ["blur(8px)", "blur(24px)"] }} transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.8, ease: "easeOut" }} className="absolute top-0 right-0 w-16 h-8 bg-white/40 rounded-full" style={{ top: `${i * 10 - 15}px`, right: `${i * -5}px` }} />
                         ))}
                     </div>
-
-                    <Image
-                      src="/CTA Section bike png.png"
-                      alt="Winev Electric Bike"
-                      width={320}
-                      height={220}
-                      className="w-full h-auto drop-shadow-xl relative z-10"
-                    />
-                    {/* Enhanced Multi-layered Ground Glow for Depth */}
+                    <Image src="/CTA Section bike png.png" alt="Winev Electric Bike" width={320} height={220} className="w-full h-auto drop-shadow-xl relative z-10" />
                     <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-6 bg-white/40 blur-2xl rounded-[100%] pointer-events-none" />
-                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-[60%] h-2 bg-white/60 blur-lg rounded-[100%] pointer-events-none" />
                 </div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/5 rounded-full blur-[60px] pointer-events-none" />
               </motion.div>
           </div>
        </div>
     </section>
   )
 }
-
-    
