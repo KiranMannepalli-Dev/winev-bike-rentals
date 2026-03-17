@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,6 +9,12 @@ import { Building, Target, Users, Bike as BikeIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function AboutContent() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const aboutImage = PlaceHolderImages.find(p => p.id === 'about-us-image');
 
   const teamMembers = [
@@ -127,29 +134,31 @@ export default function AboutContent() {
 
             {/* Image Side - Minimal & Fully Visible */}
             <div className="flex justify-center md:justify-end">
-              <div className="relative group max-w-[280px] md:max-w-md">
-                {/* Minimal Frame Accent */}
-                <div className="absolute -bottom-2 -right-2 w-full h-full border border-primary/10 pointer-events-none" />
-                
-                <div className="relative overflow-hidden shadow-xl border border-border bg-zinc-50">
-                  <Image
-                    src="/Arun 1.jpeg"
-                    alt="Arun - Founder"
-                    width={500}
-                    height={600}
-                    className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                    priority
-                  />
+              {isMounted && (
+                <div className="relative group max-w-[280px] md:max-w-md">
+                  {/* Minimal Frame Accent */}
+                  <div className="absolute -bottom-2 -right-2 w-full h-full border border-primary/10 pointer-events-none" />
                   
-                  {/* Targeted 20% Bottom Overlay for Contrast */}
-                  <div className="absolute bottom-0 inset-x-0 h-[22%] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-                  
-                  <div className="absolute bottom-3 left-4 right-4">
-                      <p className="text-white font-medium text-sm tracking-tight text-shadow-sm leading-tight">Y. Arun Kumar & D. Anil Kumar</p>
-                      <p className="text-primary/90 text-[8px] uppercase tracking-widest font-bold">Founders</p>
+                  <div className="relative overflow-hidden shadow-xl border border-border bg-zinc-50" suppressHydrationWarning>
+                    <Image
+                      src="/Arun 1.jpeg"
+                      alt="Arun - Founder"
+                      width={500}
+                      height={600}
+                      className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                      priority
+                    />
+                    
+                    {/* Targeted 20% Bottom Overlay for Contrast */}
+                    <div className="absolute bottom-0 inset-x-0 h-[22%] bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                    
+                    <div className="absolute bottom-3 left-4 right-4">
+                        <p className="text-white font-medium text-sm tracking-tight text-shadow-sm leading-tight">Y. Arun Kumar & D. Anil Kumar</p>
+                        <p className="text-primary/90 text-[8px] uppercase tracking-widest font-bold">Founders</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

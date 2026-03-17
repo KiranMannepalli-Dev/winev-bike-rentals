@@ -61,6 +61,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { Suspense } from 'react';
+import { PageTransition } from '@/components/ui/PageTransition';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -69,6 +72,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} dark`}>
       <body className="font-body antialiased bg-background text-foreground min-h-screen">
+        <Suspense fallback={null}>
+          <PageTransition />
+        </Suspense>
         {children}
         <Toaster />
       </body>
