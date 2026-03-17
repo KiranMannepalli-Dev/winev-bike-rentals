@@ -1,11 +1,7 @@
 {
-<<<<<<< HEAD
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
   "files.associations": {
     "*.css": "tailwindcss"
   }
-=======
-  "css.lint.unknownAtRules": "ignore"
->>>>>>> 1802d1234f783cf0d2eb5cd715fd862be408f3cc
 }
